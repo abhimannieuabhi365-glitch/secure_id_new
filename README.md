@@ -1,31 +1,32 @@
 --> Secure ID Using QR
 
---> Overview
+A secure certificate authentication and identity verification system that combines QR code technology with facial recognition to provide real-time and reliable certificate validation.
 
-Secure ID Using QR is a certificate authentication and identity verification system designed to provide secure and real-time verification of digital certificates.
+--> 📌 Project Overview
 
-The system combines QR code-based certificate verification with facial recognition to verify both the authenticity of a certificate and the identity of the person presenting it.
+Secure ID Using QR is designed to make certificate verification more secure and easier to perform. The system allows certificates to be registered and verified using encrypted QR codes. During verification, the QR code is scanned and facial recognition is used to verify the identity of the person associated with the certificate.
 
-The backend is developed using Python and Django with MySQL for database management, while the mobile application is developed using Flutter and Dart. OpenCV and facial recognition technologies are used for biometric identity verification.
+The project consists of a Django-based backend and a Flutter mobile application.
 
---> Key Features
+--> 🚀 Features
 
-- QR code generation and certificate verification
-- Secure certificate authentication
-- Facial recognition-based identity verification
-- Real-time certificate validation
-- Student and company authentication
-- Secure certificate and document management
-- Flutter mobile application
-- Django-based backend
-- MySQL database integration
+- 🔐 Secure certificate management
+- 📱 QR code generation and scanning
+- 👤 Facial recognition for identity verification
+- ✅ Real-time certificate authentication
+- 🗄️ MySQL database integration
+- 📲 Flutter mobile application
+- 🌐 Django backend
+- 🔑 Secure student/company authentication
 
---> Technologies Used
+--> 🛠️ Technologies Used
 
 --> Backend
 - Python
 - Django
 - MySQL
+- OpenCV
+- Face Recognition
 
 --> Frontend
 - Flutter
@@ -34,38 +35,24 @@ The backend is developed using Python and Django with MySQL for database managem
 - CSS
 - Bootstrap
 
---> Security and Verification
+--> Security & Verification
 - QR Code
-- OpenCV
 - Facial Recognition
+- Encrypted certificate verification
 
---> Mobile Application
-- Flutter
-- Dart
-- Mobile Scanner
-- Shared Preferences
-- HTTP
+--> 📂 Project Structure
 
---> How It Works
-
-1. A certificate is created and stored through the Django backend.
-2. A unique QR code is associated with the certificate.
-3. The QR code can be scanned using the Flutter mobile application.
-4. The application sends the certificate information to the Django backend.
-5. The backend checks the certificate information against the database.
-6. Facial recognition is used to verify the identity of the person presenting the certificate.
-7. The verification result is returned to the application.
-
---> Project Structure
-
-```text
-Secure-ID/
+--> text
+secure_id_new/
+│
 ├── APP/                  # Django application
-├── Frontend/             # Flutter mobile application
-├── media/                # Uploaded media files
-├── secure_id_new/        # Django project configuration
+├── media/                # Uploaded certificate files
 ├── templates/            # Django HTML templates
-├── tools/                # Project utilities
+├── Frontend/             # Flutter mobile application
+│   ├── lib/              # Dart source files
+│   ├── android/          # Android configuration
+│   ├── ios/              # iOS configuration
+│   └── web/              # Flutter web configuration
+│
 ├── manage.py             # Django management script
-├── .gitignore
-└── README.md
+└── .gitignore            # Git ignored files
