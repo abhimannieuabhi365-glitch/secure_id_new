@@ -1,0 +1,534 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/edit_subject_post/{{data.id }}">#}
+{#  <table width="376" height="231" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">EDIT SUBJECT</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="92" scope="row">NAME</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.name }}" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">DISCRIPTION</th>#}
+{#      <td><label for="textarea"></label>#}
+{#      <input type="text" name="textarea" value="{{ data.description }}" id="textarea" cols="45" rows="5"></td>#}
+{#    </tr>#}
+{#          <tr>#}
+{#      <th width="92" scope="row">SEMESTER</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.semester }}" name="semester" id="textfield" /></td>#}
+{#    </tr>#}
+{#        <tr>#}
+{#      <th width="92" scope="row">CODE</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.code }}" name="code" id="textfield" /></td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <th width="92" scope="row">CREDIT</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.credit }}" name="credit" id="textfield" /></td>#}
+{#    </tr>#}
+{#               <tr>#}
+{#      <th width="92" scope="row">MAX_MARK</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.max_mark }}" name="max_mark" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="ADD" /></th>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Edit Subject</title>#}
+{#<style type="text/css">#}
+{#/* Blue Theme Styles - Consistent with previous pages */#}
+{#* {#}
+{#    margin: 0;#}
+{#    padding: 0;#}
+{#    box-sizing: border-box;#}
+{#    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#}#}
+{##}
+{#body {#}
+{#    background: linear-gradient(135deg, #1a2980, #26d0ce);#}
+{#    min-height: 100vh;#}
+{#    display: flex;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    padding: 20px;#}
+{#}#}
+{##}
+{##form1 {#}
+{#    background: rgba(255, 255, 255, 0.95);#}
+{#    border-radius: 15px;#}
+{#    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);#}
+{#    overflow: hidden;#}
+{#    width: 500px;#}
+{#    border: 2px solid #2c3e50;#}
+{#}#}
+{##}
+{#table {#}
+{#    width: 100%;#}
+{#    border-collapse: collapse;#}
+{#    border: none !important;#}
+{#}#}
+{##}
+{#th {#}
+{#    color: white;#}
+{#    padding: 15px;#}
+{#    font-size: 16px;#}
+{#    font-weight: 600;#}
+{#    border: 1px solid #e0e0e0 !important;#}
+{#    text-align: left;#}
+{#}#}
+{##}
+{#th[scope="row"] {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    font-weight: 600;#}
+{#    width: 30%;#}
+{#    padding: 15px;#}
+{#}#}
+{##}
+{#th[colspan="2"] {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    padding: 20px;#}
+{#    font-size: 22px;#}
+{#    font-weight: 600;#}
+{#    letter-spacing: 1px;#}
+{#    border: none !important;#}
+{#    text-transform: uppercase;#}
+{#    text-align: center;#}
+{#}#}
+{##}
+{#tr {#}
+{#    transition: all 0.3s ease;#}
+{#}#}
+{##}
+{#td {#}
+{#    padding: 15px;#}
+{#    border: 1px solid #e0e0e0 !important;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#    background: white;#}
+{#}#}
+{##}
+{#input[type="text"] {#}
+{#    width: 100%;#}
+{#    padding: 12px 15px;#}
+{#    border: 2px solid #3498db;#}
+{#    border-radius: 8px;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#    background: white;#}
+{#    transition: all 0.3s ease;#}
+{#    outline: none;#}
+{#}#}
+{##}
+{#input[type="text"]:focus {#}
+{#    border-color: #2980b9;#}
+{#    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);#}
+{#}#}
+{##}
+{##button {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 14px 30px;#}
+{#    font-size: 18px;#}
+{#    font-weight: 600;#}
+{#    border-radius: 8px;#}
+{#    cursor: pointer;#}
+{#    transition: all 0.3s ease;#}
+{#    width: 200px;#}
+{#    display: block;#}
+{#    margin: 20px auto;#}
+{#    letter-spacing: 1px;#}
+{#    text-transform: uppercase;#}
+{#}#}
+{##}
+{##button:hover {#}
+{#    background: linear-gradient(135deg, #2980b9, #1c5a7d);#}
+{#    transform: translateY(-2px);#}
+{#    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);#}
+{#}#}
+{##}
+{##button:active {#}
+{#    transform: translateY(0);#}
+{#}#}
+{##}
+{#/* Style for the last row containing the submit button */#}
+{#tr:last-child th[colspan="2"] {#}
+{#    background: transparent;#}
+{#    padding: 10px;#}
+{#    border: none !important;#}
+{#}#}
+{##}
+{#/* Table row alternating effect */#}
+{#tr:nth-child(even) th[scope="row"] {#}
+{#    background: linear-gradient(135deg, #2c82c9, #2573a7);#}
+{#}#}
+{##}
+{#tr:nth-child(even) td {#}
+{#    background: #f8fafc;#}
+{#}#}
+{##}
+{#/* Responsive adjustments */#}
+{#@media (max-width: 600px) {#}
+{#    #form1 {#}
+{#        width: 95%;#}
+{#    }#}
+{##}
+{#    table {#}
+{#        display: block;#}
+{#        overflow-x: auto;#}
+{#    }#}
+{##}
+{#    th[scope="row"], td {#}
+{#        display: block;#}
+{#        width: 100%;#}
+{#        text-align: left;#}
+{#    }#}
+{##}
+{#    th[scope="row"] {#}
+{#        border-bottom: none;#}
+{#        border-top: 2px solid #3498db;#}
+{#    }#}
+{##}
+{#    td {#}
+{#        border-top: none;#}
+{#    }#}
+{##}
+{#    #button {#}
+{#        width: 180px;#}
+{#        padding: 12px 25px;#}
+{#    }#}
+{#}#}
+{##}
+{#/* Note: The HTML uses input type="text" for textarea which should be <textarea> */#}
+{#/* We'll style it appropriately */#}
+{#input#textarea {#}
+{#    min-height: 100px;#}
+{#    resize: vertical;#}
+{#    font-family: inherit;#}
+{#}#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/edit_subject_post/{{data.id }}">#}
+{#  <table width="376" height="231" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">EDIT SUBJECT</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="92" scope="row">NAME</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.name }}" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">DESCRIPTION</th>#}
+{#      <td><label for="textarea"></label>#}
+{#      <input type="text" name="textarea" value="{{ data.description }}" id="textarea" cols="45" rows="5"></td>#}
+{#    </tr>#}
+{#          <tr>#}
+{#      <th width="92" scope="row">SEMESTER</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.semester }}" name="semester" id="textfield" /></td>#}
+{#    </tr>#}
+{#        <tr>#}
+{#      <th width="92" scope="row">CODE</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.code }}" name="code" id="textfield" /></td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <th width="92" scope="row">CREDIT</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.credit }}" name="credit" id="textfield" /></td>#}
+{#    </tr>#}
+{#               <tr>#}
+{#      <th width="92" scope="row">MAX_MARK</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.max_mark }}" name="max_mark" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="ADD" /></th>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Edit Subject</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 500px;
+    border: 2px solid #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+}
+
+th {
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: left;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    width: 30%;
+    padding: 15px;
+}
+
+th[colspan="2"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 16px;
+    color: #2c3e50;
+    background: white;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+input[type="text"]:focus, textarea:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#button:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5a7d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+}
+
+#button:active {
+    transform: translateY(0);
+}
+
+/* Style for the last row containing the submit button */
+tr:last-child th[colspan="2"] {
+    background: transparent;
+    padding: 10px;
+    border: none !important;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) th[scope="row"] {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th[scope="row"], td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    th[scope="row"] {
+        border-bottom: none;
+        border-top: 2px solid #3498db;
+    }
+
+    td {
+        border-top: none;
+    }
+
+    #button {
+        width: 180px;
+        padding: 12px 25px;
+    }
+}
+
+/* Character count for description */
+.char-count {
+    font-size: 0.8rem;
+    color: #3498db;
+    text-align: right;
+    margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/edit_subject_post/{{data.id }}">
+  <table width="376" height="231" border="1">
+    <tr>
+      <th colspan="2" scope="row">EDIT SUBJECT</th>
+    </tr>
+    <tr>
+      <th width="92" scope="row">NAME</th>
+      <td width="130">
+      <input type="text" value="{{ data.name }}" name="textfield" id="textfield"
+      required minlength="3" maxlength="100" pattern="[A-Za-z\s]+"
+      title="Only letters and spaces allowed" />
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">DESCRIPTION</th>
+      <td>
+      <textarea name="textarea" id="textarea" cols="45" rows="5" required minlength="10" maxlength="500"
+      placeholder="Enter detailed subject description">{{ data.description }}</textarea>
+      <div class="char-count" id="charCount">0/500 characters</div>
+      </td>
+    </tr>
+    <tr>
+      <th width="92" scope="row">SEMESTER</th>
+      <td width="130">
+      <input type="text" value="{{ data.semester }}" name="semester" id="semester"
+      required pattern="[1-6]" title="Please enter a valid semester number between 1 and 6" />
+      </td>
+    </tr>
+    <tr>
+      <th width="92" scope="row">CODE</th>
+      <td width="130">
+      <input type="text" value="{{ data.code }}" name="code" id="code"
+      required pattern="[0-9]+" title="Please enter numbers only for code" />
+      </td>
+    </tr>
+    <tr>
+      <th width="92" scope="row">CREDIT</th>
+      <td width="130">
+      <input type="text" value="{{ data.credit }}" name="credit" id="credit"
+      required pattern="^\d+(\.\d+)?$" title="Please enter a valid numeric credit (e.g., 3 or 3.5)" />
+      </td>
+    </tr>
+    <tr>
+      <th width="92" scope="row">MAX_MARK</th>
+      <td width="130">
+      <input type="text" value="{{ data.max_mark }}" name="max_mark" id="max_mark"
+      required pattern="[0-9]+" title="Please enter numbers only for maximum marks" />
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="UPDATE" /></th>
+    </tr>
+  </table>
+</form>
+
+<script>
+// Character count for description
+const textarea = document.getElementById('textarea');
+const charCount = document.getElementById('charCount');
+function updateCharCount() {
+    charCount.textContent = `${textarea.value.length}/500 characters`;
+}
+textarea.addEventListener('input', updateCharCount);
+updateCharCount();
+</script>
+</body>
+</html>

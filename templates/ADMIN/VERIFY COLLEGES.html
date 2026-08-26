@@ -1,0 +1,332 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="798" height="359" border="1">#}
+{#    <tr>#}
+{#      <th colspan="8" scope="row">VERIFY COLLEGES</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">Slno</th>#}
+{#      <td>Name</td>#}
+{#      <td>E-mail</td>#}
+{#      <td>Phone</td>#}
+{#      <td>Place</td>#}
+{#      <td>Post</td>#}
+{#      <td>Pin</td>#}
+{#      <td>&nbsp;verify</td>#}
+{#    </tr>#}
+{#{% for i in data %}#}
+{#      <tr>#}
+{#      <th scope="row">{{ forloop.counter }}</th>#}
+{#      <td>{{ i.name }}</td>#}
+{#      <td>{{ i.email }}</td>#}
+{#      <td>{{ i.phone }}</td>#}
+{#      <td>{{ i.place }}</td>#}
+{#      <td>{{ i.post }}</td>#}
+{#      <td>{{ i.pin }}</td>#}
+{#          {% if i.status == 'pending' %}#}
+{#      <td><p><a href="/accept_college/{{ i.id }}">ACCEPT</a></p>#}
+{#      <p><a href="/reject_college/{{ i.id }}">REJECT</a></p></td>#}
+{#      {% elif i.status == 'college' %}#}
+{#      <td>Approved</td>#}
+{#      {% else %}#}
+{#      <td>Rejected</td>#}
+{#      {% endif %}#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Verify Colleges</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 800px;
+    border: 2px solid #2c3e50;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+    min-width: 780px;
+}
+
+th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: center;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+}
+
+th[colspan="8"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Style for links - matching previous button style */
+a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 3px 0;
+    font-weight: 600;
+    font-size: 13px;
+    width: 90px;
+    text-align: center;
+}
+
+/* Accept link - Green */
+a[href*="accept_college"] {
+    color: white;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    border: 2px solid #27ae60;
+}
+
+/* Reject link - Red */
+a[href*="reject_college"] {
+    color: white;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border: 2px solid #e74c3c;
+}
+
+/* Column styling for better readability */
+td:nth-child(1) { /* Slno */
+    width: 8%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* Name */
+    width: 18%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* E-mail */
+    width: 20%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+td:nth-child(4) { /* Phone */
+    width: 12%;
+}
+
+td:nth-child(5) { /* Place */
+    width: 12%;
+}
+
+td:nth-child(6) { /* Post */
+    width: 10%;
+}
+
+td:nth-child(7) { /* Pin */
+    width: 10%;
+}
+
+td:nth-child(8) { /* Verify */
+    width: 10%;
+    background: #f8f9fa;
+}
+
+/* Header row cells - different style from main header */
+tr:nth-child(2) th[scope="row"],
+tr:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* Status text styling */
+td:contains("Approved") {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+td:contains("Rejected") {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+/* Since :contains is not supported in CSS, we'll use class or specific styling */
+/* We'll add classes via JavaScript or use attribute selectors if possible */
+
+/* Approved status */
+td:last-child:not(:has(a)):not(:empty) {
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* For Approved text */
+td:last-child:contains("Approved") {
+    background: rgba(39, 174, 96, 0.1);
+    color: #27ae60;
+    border: 2px solid #27ae60 !important;
+}
+
+/* For Rejected text */
+td:last-child:contains("Rejected") {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 2px solid #e74c3c !important;
+}
+
+/* For Pending - contains links */
+td:last-child:has(a) {
+    background: #f8f9fa;
+}
+
+/* Action cell styling */
+td:last-child p {
+    margin: 8px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        min-width: 780px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    th[colspan="8"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    a {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 80px;
+    }
+}
+
+/* Empty cell in header */
+tr:nth-child(2) td:last-child {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="798" height="359" border="1">
+    <tr>
+      <th colspan="8" scope="row">VERIFY COLLEGES</th>
+    </tr>
+    <tr>
+      <th scope="row">Slno</th>
+      <td>Name</td>
+      <td>E-mail</td>
+      <td>Phone</td>
+      <td>Place</td>
+      <td>Post</td>
+      <td>Pin</td>
+      <td>&nbsp;verify</td>
+    </tr>
+{% for i in data %}
+      <tr>
+      <td scope="row">{{ forloop.counter }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.post }}</td>
+      <td>{{ i.pin }}</td>
+          {% if i.status == 'pending' %}
+      <td><p><a href="/accept_college/{{ i.id }}">ACCEPT</a></p>
+      <p><a href="/reject_college/{{ i.id }}">REJECT</a></p></td>
+      {% elif i.status == 'college' %}
+      <td>Approved</td>
+      {% else %}
+      <td>Rejected</td>
+      {% endif %}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>

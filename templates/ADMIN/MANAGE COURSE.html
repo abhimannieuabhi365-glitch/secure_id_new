@@ -1,0 +1,326 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="711" height="364" border="1">#}
+{#    <tr>#}
+{#      <th colspan="5" scope="row">MANAGE COURSE</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="124" scope="row">Slno#</th>#}
+{#      <td width="142">TITLE</td>#}
+{#      <td width="326">DESCRIPTION</td>#}
+{#      <td width="91">&nbsp;action</td>#}
+{#      <td width="91">subject</td>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <td scope="row">{{ forloop.counter }}</td>#}
+{#      <td>{{ i.title }}</td>#}
+{#      <td>{{ i.description }}</td>#}
+{#      <td>#}
+{#      <p><a href="/edit_course/{{ i.id }}">EDIT</a><BR><a href="/delete_course/{{ i.id }}">DELETE</a></p><BR> </td>#}
+{#    <td><a href="/add_subject/{{ i.id }}">ADD </a><br/>#}
+{#    <a href="/view_subject/{{ i.id }}">VIEW</a>#}
+{#    </td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Manage Course</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 750px;
+    border: 2px solid #2c3e50;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+    min-width: 700px;
+}
+
+th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: center;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+}
+
+th[colspan="5"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:first-child {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Style for links - matching previous button style */
+a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin: 3px 0;
+    font-weight: 600;
+    font-size: 13px;
+    width: 80px;
+}
+
+/* Edit link - Blue */
+a[href*="edit_course"] {
+    color: white;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: 2px solid #3498db;
+}
+
+a[href*="edit_course"]:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5a7d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+}
+
+/* Delete link - Red */
+a[href*="delete_course"] {
+    color: white;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border: 2px solid #e74c3c;
+}
+
+a[href*="delete_course"]:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Add subject link - Green */
+a[href*="add_subject"] {
+    color: white;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    border: 2px solid #27ae60;
+}
+
+a[href*="add_subject"]:hover {
+    background: linear-gradient(135deg, #229954, #1e8449);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+}
+
+/* View subject link - Teal */
+a[href*="view_subject"] {
+    color: white;
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+    border: 2px solid #1abc9c;
+}
+
+a[href*="view_subject"]:hover {
+    background: linear-gradient(135deg, #16a085, #138d75);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(26, 188, 156, 0.4);
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:nth-child(even):hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+tr:nth-child(even) th[scope="row"] {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+/* Column styling for better readability */
+td:nth-child(1) { /* Slno# */
+    width: 10%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* TITLE */
+    width: 20%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* DESCRIPTION */
+    width: 40%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+td:nth-child(4) { /* Action */
+    width: 15%;
+    background: #f8f9fa;
+}
+
+td:nth-child(5) { /* Subject */
+    width: 15%;
+    background: #f8f9fa;
+}
+
+/* Header row cells */
+tr:nth-child(2) th[scope="row"],
+tr:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    th[colspan="5"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    a {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 70px;
+    }
+}
+
+/* Action cell styling */
+td:nth-child(4) p,
+td:nth-child(5) p {
+    margin: 8px 0;
+}
+
+/* Empty cell in header */
+tr:nth-child(2) td:last-child {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+/* Link spacing */
+td a {
+    margin-bottom: 5px;
+    display: block;
+}
+
+td br {
+    display: none;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="711" height="364" border="1">
+    <tr>
+      <th colspan="5" scope="row">MANAGE COURSE</th>
+    </tr>
+    <tr>
+      <th width="124" scope="row">Slno#</th>
+      <td width="142">TITLE</td>
+      <td width="326">DESCRIPTION</td>
+      <td width="91">&nbsp;action</td>
+      <td width="91">subject</td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td scope="row">{{ forloop.counter }}</td>
+      <td>{{ i.title }}</td>
+      <td>{{ i.description }}</td>
+      <td>
+      <p><a href="/edit_course/{{ i.id }}">EDIT</a><BR><a href="/delete_course/{{ i.id }}">DELETE</a></p><BR> </td>
+    <td><a href="/add_subject/{{ i.id }}">ADD </a><br/>
+    <a href="/view_subject/{{ i.id }}">VIEW</a>
+    </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>

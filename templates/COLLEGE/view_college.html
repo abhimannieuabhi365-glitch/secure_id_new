@@ -1,0 +1,550 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#    <style type="text/css">#}
+{##}
+{##gmap { width: 200px; height: 100px; border: double; }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body onload="initialize()"><form action="/college_register_post" method="post" enctype="multipart/form-data">#}
+{#<table width="749" height="830" border="1">#}
+{#    {% for i in data %}#}
+{#  <tr>#}
+{#    <th colspan="2" scope="row">view profile</th>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">NAME</th>#}
+{#    <td><label for="textfield2"></label>#}
+{#      <input type="text" name="textfield2" id="textfield2" value="{{ i.name }}" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">E-MAIL</th>#}
+{#    <td><label for="textfield3"></label>#}
+{#      <input type="text" name="textfield3" id="textfield3" value="{{ i.email }}" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PHONE</th>#}
+{#    <td><label for="textfield4"></label>#}
+{#      <input type="text" name="textfield4" id="textfield4" value="{{ i.phone }}"/></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PLACE</th>#}
+{#    <td><label for="textfield5"></label>#}
+{#      <input type="text" name="textfield5" id="textfield5" value="{{ i.place }}"/></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">POST</th>#}
+{#    <td><label for="textfield6"></label>#}
+{#      <input type="text" name="textfield6" id="textfield6" value="{{ i.post }}"/></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PIN</th>#}
+{#    <td><label for="textfield7"></label>#}
+{#      <input type="text" name="textfield7" id="textfield7" value="{{ i.pin }}"/></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PIC</th>#}
+{#   <td><img src="{{ i.pic }}" alt=""/> </td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">LATITUDE</th>#}
+{#    <td><label for="textfield8"></label><div id="gmap"></div>#}
+{#      <input type="text" name="textfield8" id="lt" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">LONGITUDE</th>#}
+{#    <td><label for="textfield9"></label>#}
+{#      <input type="text" name="textfield9" id="lg" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PROOF</th>#}
+{#    <td><label for="fileField2"></label>#}
+{#     <img src="{{ i.proof }}" alt=""/></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <th height="32" colspan="2" scope="row"><label for="textfield10"></label>#}
+{#      <input type="submit" name="button" id="button" value="REGISTER" /></th>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</form>#}
+{##}
+{#</body>#}
+{##}
+{##}
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"></script>#}
+{#<script type="text/javascript">#}
+{#var map, marker;#}
+{##}
+{#function initialize() {#}
+{#    var myLatlng = new google.maps.LatLng(11.868536, 75.363197);#}
+{#    var myOptions = {#}
+{#        zoom: 7,#}
+{#        center: myLatlng,#}
+{#        mapTypeId: google.maps.MapTypeId.ROADMAP#}
+{#    }#}
+{#    map = new google.maps.Map(document.getElementById("gmap"), myOptions);#}
+{#    marker = new google.maps.Marker({#}
+{#        position: myLatlng,#}
+{#        map: map#}
+{#    });#}
+{##}
+{#    google.maps.event.addListener(map, "click", function(event) {#}
+{#        var clickLat = event.latLng.lat();#}
+{#        var clickLon = event.latLng.lng();#}
+{#        document.getElementById("lt").value = clickLat.toFixed(5);#}
+{#        document.getElementById("lg").value = clickLon.toFixed(5);#}
+{#        marker.setPosition(new google.maps.LatLng(clickLat, clickLon));#}
+{#    });#}
+{##}
+{#    GetMylocation();#}
+{#}#}
+{##}
+{#function GetMylocation() {#}
+{#    if (navigator.geolocation) {#}
+{#        navigator.geolocation.getCurrentPosition(showPosition);#}
+{#    } else {#}
+{#        alert("Geolocation is not supported by this browser.");#}
+{#    }#}
+{#}#}
+{##}
+{#function showPosition(position) {#}
+{#    var lat = position.coords.latitude;#}
+{#    var lon = position.coords.longitude;#}
+{#    document.getElementById("lt").value = lat;#}
+{#    document.getElementById("lg").value = lon;#}
+{##}
+{#    var myLatlng = new google.maps.LatLng(lat, lon);#}
+{#    map.setCenter(myLatlng);#}
+{#    map.setZoom(14);#}
+{#    marker.setPosition(myLatlng);#}
+{#}#}
+{#</script>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>College Profile - Digital Waves</title>
+<style type="text/css">
+    /* General Styles */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Container */
+    form {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border: none;
+    }
+
+    /* Table Rows */
+    tr {
+        transition: background 0.3s;
+    }
+
+    tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+
+    tr:hover {
+        background: #e9f7fe;
+    }
+
+    /* Table Headers */
+    th {
+        background: #17a2b8;
+        color: white;
+        font-weight: 600;
+        padding: 20px;
+        text-align: left;
+        font-size: 16px;
+        border: none;
+        width: 25%;
+    }
+
+    th[colspan="2"] {
+        text-align: center;
+        font-size: 24px;
+        background: linear-gradient(135deg, #17a2b8, #2c3e50);
+        letter-spacing: 1px;
+    }
+
+    /* Table Cells */
+    td {
+        padding: 20px;
+        border: none;
+        vertical-align: middle;
+    }
+
+    /* Input Fields */
+    input[type="text"] {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s;
+        background: white;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:focus {
+        border-color: #17a2b8;
+        box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.1);
+        outline: none;
+    }
+
+    /* Images */
+    img {
+        max-width: 200px;
+        max-height: 200px;
+        border-radius: 10px;
+        border: 3px solid #e1e5e9;
+        padding: 5px;
+        background: white;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: all 0.3s;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    /* Map Container */
+    #gmap {
+        width: 100%;
+        height: 300px;
+        border: 3px solid #e1e5e9;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Submit Button */
+    input[type="submit"] {
+        background: linear-gradient(135deg, #17a2b8, #2c3e50);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: block;
+        margin: 20px auto;
+        min-width: 200px;
+        letter-spacing: 1px;
+    }
+
+    input[type="submit"]:hover {
+        background: linear-gradient(135deg, #138496, #1a252f);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(23, 162, 184, 0.3);
+    }
+
+    /* Label Styling */
+    label {
+        display: none;
+    }
+
+    /* Map Coordinates Inputs */
+    #lt, #lg {
+        background: #f8f9fa;
+        font-family: monospace;
+        font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
+        th, td {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        th {
+            background: #17a2b8;
+            color: white;
+            border-bottom: 2px solid #138496;
+        }
+
+        td {
+            padding-top: 10px;
+            padding-bottom: 20px;
+        }
+
+        tr {
+            border-bottom: 2px solid #e1e5e9;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        img {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        #gmap {
+            height: 250px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin: 20px 0;
+        }
+    }
+
+    /* Header Row */
+    tr:first-child th {
+        padding: 30px 20px;
+        font-size: 28px;
+        letter-spacing: 1.5px;
+    }
+
+    /* Last Row (Submit Button) */
+    tr:last-child th {
+        background: none;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    /* Add some spacing between form elements */
+    input[type="text"], img, #gmap {
+        margin: 5px 0;
+    }
+
+    /* Custom scrollbar for the page */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #17a2b8;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #138496;
+    }
+
+    /* Focus states for accessibility */
+    input:focus, button:focus {
+        outline: 2px solid #17a2b8;
+        outline-offset: 2px;
+    }
+</style>
+</head>
+
+<body onload="initialize()">
+<form action="/college_register_post" method="post" enctype="multipart/form-data">
+<table>
+    {% for i in data %}
+    <tr>
+        <th colspan="2" scope="row">COLLEGE PROFILE</th>
+    </tr>
+    <tr>
+        <th scope="row">NAME</th>
+        <td>
+            <label for="textfield2"></label>
+            <input type="text" name="textfield2" id="textfield2" value="{{ i.name }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">E-MAIL</th>
+        <td>
+            <label for="textfield3"></label>
+            <input type="text" name="textfield3" id="textfield3" value="{{ i.email }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">PHONE</th>
+        <td>
+            <label for="textfield4"></label>
+            <input type="text" name="textfield4" id="textfield4" value="{{ i.phone }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">PLACE</th>
+        <td>
+            <label for="textfield5"></label>
+            <input type="text" name="textfield5" id="textfield5" value="{{ i.place }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">POST</th>
+        <td>
+            <label for="textfield6"></label>
+            <input type="text" name="textfield6" id="textfield6" value="{{ i.post }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">PIN</th>
+        <td>
+            <label for="textfield7"></label>
+            <input type="text" name="textfield7" id="textfield7" value="{{ i.pin }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">PIC</th>
+        <td>
+            <img src="{{ i.pic }}" alt="College Image"/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">LATITUDE</th>
+        <td>
+            <label for="textfield8"></label>
+            <input type="text" name="textfield8" id="lt"  value="{{ i.latitude }}" disabled />
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">LONGITUDE</th>
+        <td>
+            <label for="textfield9"></label>
+            <input type="text" name="textfield9" id="lg"  value="{{ i.longitude }}" disabled/>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">PROOF DOCUMENT</th>
+        <td>
+            <label for="fileField2"></label>
+            <img src="{{ i.proof }}" alt="Proof Document"/>
+        </td>
+    </tr>
+
+    {% endfor %}
+</table>
+</form>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"></script>
+<script type="text/javascript">
+var map, marker;
+
+function initialize() {
+    var myLatlng = new google.maps.LatLng(11.868536, 75.363197);
+    var myOptions = {
+        zoom: 7,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+            {
+                "featureType": "administrative",
+                "elementType": "geometry",
+                "stylers": [{"visibility": "off"}]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [{"visibility": "off"}]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.icon",
+                "stylers": [{"visibility": "off"}]
+            },
+            {
+                "featureType": "transit",
+                "stylers": [{"visibility": "off"}]
+            }
+        ]
+    }
+    map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+    marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        title: "Drag me to set location"
+    });
+
+    google.maps.event.addListener(map, "click", function(event) {
+        var clickLat = event.latLng.lat();
+        var clickLon = event.latLng.lng();
+        document.getElementById("lt").value = clickLat.toFixed(5);
+        document.getElementById("lg").value = clickLon.toFixed(5);
+        marker.setPosition(new google.maps.LatLng(clickLat, clickLon));
+    });
+
+    // Also update when marker is dragged
+    google.maps.event.addListener(marker, "dragend", function(event) {
+        var clickLat = event.latLng.lat();
+        var clickLon = event.latLng.lng();
+        document.getElementById("lt").value = clickLat.toFixed(5);
+        document.getElementById("lg").value = clickLon.toFixed(5);
+    });
+
+    GetMylocation();
+}
+
+function GetMylocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    document.getElementById("lt").value = lat;
+    document.getElementById("lg").value = lon;
+
+    var myLatlng = new google.maps.LatLng(lat, lon);
+    map.setCenter(myLatlng);
+    map.setZoom(14);
+    marker.setPosition(myLatlng);
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            console.log("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            console.log("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            console.log("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            console.log("An unknown error occurred.");
+            break;
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<style>
+body {
+    background: #eaf3ff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+table {
+    width: 711px;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+th {
+    background: #1e88e5;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #bbdefb;
+}
+
+tr:nth-child(even) td {
+    background: #f1f8ff;
+}
+
+select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #64b5f6;
+    outline: none;
+}
+
+input[type="text"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #64b5f6;
+    border-radius: 4px;
+    text-align: center;
+}
+
+input[type="submit"] {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #1565c0;
+}
+
+table, th, td {
+    border: 1px solid #90caf9;
+}
+</style>
+<table>
+ <tr>
+      <td width="124" scope="row">Slno</td>
+      <td width="142"><b>Student Name</b></td>
+      <td width="326"><b>Course Name</b></td>
+      <td width="91"><b>Description</b></td>
+      <td><b>Mark</b></td>
+    </tr>
+{% for i in stud %}
+
+    <tr>
+      <td scope="row">{{ forloop.counter }}</td>
+      <td scope="row">{{ i.name }}</td>
+      <td>{{ i.OFFERED_LIST.COURSE.title }}</td>
+      <td>{{ i.OFFERED_LIST.COURSE.description }}</td>
+      <td>
+        <input name="mark" type="text" required value="{{ i.mark }}" max="20" />
+        <input name="studentid" type="text" required value="{{ i.id }}" hidden />
+      </td>
+    </tr>
+
+    {% endfor %}
+</table>

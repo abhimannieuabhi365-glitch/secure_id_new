@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Verify OTP - Parking Manager</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    :root { --teal: #3b81c9; --teal-dark: #1a1ea8; --teal-light: #e8f8f5; --teal-glow: rgba(5, 43, 67, 0.3); }
+
+    body {
+        font-family: 'Space Grotesk', sans-serif;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        display: flex; align-items: center;
+    }
+
+    .otp-container { border-radius: 25px; background: white; padding-bottom: 20px;
+        border: 2px solid var(--teal-light);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    .otp-header { background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+        padding: 3rem 2rem; text-align: center; }
+
+    .otp-header h2 { color: white; font-weight: 700; }
+
+    .otp-wrapper { display: flex; justify-content: center; gap: 15px; margin-bottom: 1.5rem; }
+
+    .otp-input {
+        width: 60px; height: 60px; font-size: 1.8rem; font-weight: 700; border-radius: 15px;
+        border: 2px solid #d9e2e7; text-align: center; transition: .25s;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .otp-input:focus { border-color: var(--teal);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px var(--teal-glow); outline: none;
+    }
+
+    .otp-input.filled { background: var(--teal-light); border-color: var(--teal-dark); }
+
+    .btn-verify {
+        background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+        width: 100%; padding: 15px; color:white; border-radius: 15px; font-weight: 600;
+        box-shadow: 0 10px 30px var(--teal-glow);
+    }
+
+    .timer { text-align:center; font-weight:700; color:#dc3545; margin-top:7px; }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="otp-container">
+
+                <div class="otp-header">
+                    <h2>Verify OTP</h2>
+                    <p class="text-white">Enter the code sent to your email</p>
+                </div>
+
+                <form method="post" action="/otpbuttonclick" class="p-4">
+                    {% csrf_token %}
+
+                    <div class="otp-wrapper">
+                        <input class="otp-input" maxlength="1" id="otp1">
+                        <input class="otp-input" maxlength="1" id="otp2">
+                        <input class="otp-input" maxlength="1" id="otp3">
+                        <input class="otp-input" maxlength="1" id="otp4">
+                    </div>
+
+                    <input type="hidden" name="textfield" id="otpFinal">
+
+                    <button type="submit" class="btn-verify">Verify Code</button>
+
+                    <div class="text-center mt-3">
+                        <a href="/forgotpassword">Resend OTP</a>
+                        <div class="timer" id="timer">02:00</div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const inputs = document.querySelectorAll(".otp-input");
+
+inputs.forEach((input, index) => {
+    input.addEventListener("keyup", (e) => {
+        if (e.key >= "0" && e.key <= "9") {
+            input.classList.add("filled");
+            if (index < inputs.length - 1) inputs[index + 1].focus();
+        } else if (e.key === "Backspace") {
+            input.classList.remove("filled");
+            if (index > 0) inputs[index - 1].focus();
+        }
+        collectOTP();
+    });
+});
+
+function collectOTP() {
+    let value = "";
+    inputs.forEach(input => value += input.value);
+    document.getElementById("otpFinal").value = value;
+}
+
+// Timer with redirect
+let timeLeft = 120;  // 2 minutes
+const timerDisplay = document.getElementById("timer");
+
+const countdown = setInterval(() => {
+    let m = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+    let s = String(timeLeft % 60).padStart(2, "0");
+    timerDisplay.textContent = `${m}:${s}`;
+    timeLeft--;
+
+    if (timeLeft < 0) {
+        clearInterval(countdown);
+        window.location.href = "/forgotpassword";
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#<div align="center">#}
+{#    <h1>COLLEGE HOME</h1><br>#}
+{#    <a href="/view_subject">VIEW SUBJECT</a><BR>#}
+{#    <a href="/view_course_college">view course</a><BR>#}
+{#    <a href="/view_own_course">view own course</a><BR>#}
+{#    <a href="/view_college">view profile</a><br>#}
+{#    <a href="/view_student_college">view student</a><br>#}
+{#    <a href="/view_internal_mark">VIEW INTERNAL MARK</a><br>#}
+{#    <a href="/college_change_password_admin">change password</a><br>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#</div>#}
+{#</body>#}
+{#</html>#}
+
+
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>College Dashboard</title>#}
+{#    <style>#}
+{#        * {#}
+{#            margin: 0;#}
+{#            padding: 0;#}
+{#            box-sizing: border-box;#}
+{#            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#        }#}
+{##}
+{#        body {#}
+{#            min-height: 100vh;#}
+{#            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);#}
+{#            padding: 20px;#}
+{#            display: flex;#}
+{#            flex-direction: column;#}
+{#            align-items: center;#}
+{#        }#}
+{##}
+{#        .header {#}
+{#            width: 100%;#}
+{#            max-width: 1200px;#}
+{#            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);#}
+{#            padding: 25px;#}
+{#            border-radius: 15px;#}
+{#            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);#}
+{#            text-align: center;#}
+{#            margin-bottom: 40px;#}
+{#            border: 2px solid #2c3e50;#}
+{#            position: relative;#}
+{#            overflow: hidden;#}
+{#        }#}
+{##}
+{#        .header::before {#}
+{#            content: '';#}
+{#            position: absolute;#}
+{#            top: 0;#}
+{#            left: 0;#}
+{#            right: 0;#}
+{#            height: 5px;#}
+{#            background: rgba(255, 255, 255, 0.3);#}
+{#        }#}
+{##}
+{#        .header h1 {#}
+{#            color: white;#}
+{#            font-size: 2.8rem;#}
+{#            font-weight: 800;#}
+{#            letter-spacing: 2px;#}
+{#            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);#}
+{#            margin-bottom: 10px;#}
+{#        }#}
+{##}
+{#        .header p {#}
+{#            color: rgba(255, 255, 255, 0.9);#}
+{#            font-size: 1.2rem;#}
+{#            font-weight: 300;#}
+{#            letter-spacing: 1px;#}
+{#        }#}
+{##}
+{#        .dashboard-grid {#}
+{#            display: grid;#}
+{#            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));#}
+{#            gap: 25px;#}
+{#            width: 100%;#}
+{#            max-width: 1200px;#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        .dashboard-card {#}
+{#            background: rgba(255, 255, 255, 0.95);#}
+{#            border-radius: 15px;#}
+{#            padding: 30px;#}
+{#            text-decoration: none;#}
+{#            display: flex;#}
+{#            flex-direction: column;#}
+{#            align-items: center;#}
+{#            justify-content: center;#}
+{#            text-align: center;#}
+{#            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);#}
+{#            border: 2px solid #2c3e50;#}
+{#            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);#}
+{#            position: relative;#}
+{#            overflow: hidden;#}
+{#            min-height: 200px;#}
+{#        }#}
+{##}
+{#        .dashboard-card::before {#}
+{#            content: '';#}
+{#            position: absolute;#}
+{#            top: 0;#}
+{#            left: 0;#}
+{#            right: 0;#}
+{#            height: 6px;#}
+{#            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);#}
+{#        }#}
+{##}
+{#        .dashboard-card:hover {#}
+{#            transform: translateY(-10px);#}
+{#            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);#}
+{#            border-color: #3498db;#}
+{#        }#}
+{##}
+{#        .dashboard-card:hover .card-icon {#}
+{#            transform: scale(1.1) rotate(5deg);#}
+{#            color: #3498db;#}
+{#        }#}
+{##}
+{#        .card-icon {#}
+{#            font-size: 3.5rem;#}
+{#            margin-bottom: 20px;#}
+{#            color: #2c3e50;#}
+{#            transition: all 0.3s ease;#}
+{#        }#}
+{##}
+{#        .card-title {#}
+{#            font-size: 1.8rem;#}
+{#            font-weight: 700;#}
+{#            color: #2c3e50;#}
+{#            margin-bottom: 10px;#}
+{#            letter-spacing: 1px;#}
+{#        }#}
+{##}
+{#        .card-description {#}
+{#            color: #7f8c8d;#}
+{#            font-size: 1rem;#}
+{#            line-height: 1.5;#}
+{#            max-width: 300px;#}
+{#        }#}
+{##}
+{#        /* Individual card colors */#}
+{#        .card-1 { border-top-color: #3498db; }#}
+{#        .card-2 { border-top-color: #2ecc71; }#}
+{#        .card-3 { border-top-color: #9b59b6; }#}
+{#        .card-4 { border-top-color: #e74c3c; }#}
+{#        .card-5 { border-top-color: #f39c12; }#}
+{#        .card-6 { border-top-color: #1abc9c; }#}
+{##}
+{#        /* Responsive adjustments */#}
+{#        @media (max-width: 768px) {#}
+{#            .dashboard-grid {#}
+{#                grid-template-columns: 1fr;#}
+{#                padding: 10px;#}
+{#            }#}
+{##}
+{#            .header h1 {#}
+{#                font-size: 2rem;#}
+{#            }#}
+{##}
+{#            .dashboard-card {#}
+{#                padding: 25px;#}
+{#                min-height: 180px;#}
+{#            }#}
+{##}
+{#            .card-title {#}
+{#                font-size: 1.5rem;#}
+{#            }#}
+{#        }#}
+{##}
+{#        @media (max-width: 480px) {#}
+{#            body {#}
+{#                padding: 10px;#}
+{#            }#}
+{##}
+{#            .header {#}
+{#                padding: 20px;#}
+{#                margin-bottom: 20px;#}
+{#            }#}
+{##}
+{#            .header h1 {#}
+{#                font-size: 1.6rem;#}
+{#            }#}
+{##}
+{#            .card-icon {#}
+{#                font-size: 2.8rem;#}
+{#            }#}
+{#        }#}
+{##}
+{#        /* Animation for page load */#}
+{#        @keyframes fadeInUp {#}
+{#            from {#}
+{#                opacity: 0;#}
+{#                transform: translateY(30px);#}
+{#            }#}
+{#            to {#}
+{#                opacity: 1;#}
+{#                transform: translateY(0);#}
+{#            }#}
+{#        }#}
+{##}
+{#        .dashboard-card {#}
+{#            animation: fadeInUp 0.6s ease-out forwards;#}
+{#            opacity: 0;#}
+{#        }#}
+{##}
+{#        .dashboard-card:nth-child(1) { animation-delay: 0.1s; }#}
+{#        .dashboard-card:nth-child(2) { animation-delay: 0.2s; }#}
+{#        .dashboard-card:nth-child(3) { animation-delay: 0.3s; }#}
+{#        .dashboard-card:nth-child(4) { animation-delay: 0.4s; }#}
+{#        .dashboard-card:nth-child(5) { animation-delay: 0.5s; }#}
+{#        .dashboard-card:nth-child(6) { animation-delay: 0.6s; }#}
+{##}
+{#        /* Footer */#}
+{#        .footer {#}
+{#            margin-top: 40px;#}
+{#            color: rgba(255, 255, 255, 0.7);#}
+{#            text-align: center;#}
+{#            font-size: 0.9rem;#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        /* Icon styles using Font Awesome */#}
+{#        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{#    <div class="header">#}
+{#        <h1>COLLEGE DASHBOARD</h1>#}
+{#        <p>Welcome to the College Management System</p>#}
+{#    </div>#}
+{##}
+{#    <div class="dashboard-grid">#}
+{#        <a href="/view_course_college" class="dashboard-card card-1">#}
+{#            <i class="card-icon fas fa-graduation-cap"></i>#}
+{#            <h2 class="card-title">View Courses</h2>#}
+{#            <p class="card-description">Browse and manage all available courses in the college</p>#}
+{#        </a>#}
+{##}
+{#        <a href="/view_own_course" class="dashboard-card card-2">#}
+{#            <i class="card-icon fas fa-book-open"></i>#}
+{#            <h2 class="card-title">View Own Courses</h2>#}
+{#            <p class="card-description">View courses assigned to your department</p>#}
+{#        </a>#}
+{##}
+{#        <a href="/view_college" class="dashboard-card card-3">#}
+{#            <i class="card-icon fas fa-user-circle"></i>#}
+{#            <h2 class="card-title">College Profile</h2>#}
+{#            <p class="card-description">View and update college profile information</p>#}
+{#        </a>#}
+{##}
+{#        <a href="/view_student_college" class="dashboard-card card-4">#}
+{#            <i class="card-icon fas fa-users"></i>#}
+{#            <h2 class="card-title">View Students</h2>#}
+{#            <p class="card-description">Access student information and records</p>#}
+{#        </a>#}
+{##}
+{#        <a href="/view_internal_mark" class="dashboard-card card-5">#}
+{#            <i class="card-icon fas fa-chart-bar"></i>#}
+{#            <h2 class="card-title">Internal Marks</h2>#}
+{#            <p class="card-description">Manage and view internal examination marks</p>#}
+{#        </a>#}
+{##}
+{#        <a href="/college_change_password_admin" class="dashboard-card card-6">#}
+{#            <i class="card-icon fas fa-key"></i>#}
+{#            <h2 class="card-title">Change Password</h2>#}
+{#            <p class="card-description">Update your account password and security settings</p>#}
+{#        </a>#}
+{#    </div>#}
+{##}
+{#    <div class="footer">#}
+{#        <p>© 2024 College Management System | Secure ID Platform</p>#}
+{#    </div>#}
+{##}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin-bottom: 40px;
+            border: 2px solid #2c3e50;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* LOGOUT BUTTON */
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #c0392b, #96281b);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 2px solid #2c3e50;
+            transition: all 0.4s ease;
+            min-height: 200px;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: #3498db;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover .card-icon {
+            transform: scale(1.1);
+            color: #3498db;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard-card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+        .dashboard-card:nth-child(2) { animation-delay: 0.2s; }
+        .dashboard-card:nth-child(3) { animation-delay: 0.3s; }
+        .dashboard-card:nth-child(4) { animation-delay: 0.4s; }
+        .dashboard-card:nth-child(5) { animation-delay: 0.5s; }
+        .dashboard-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .footer {
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>COLLEGE DASHBOARD</h1>
+    <p>Welcome to the College Management System</p>
+
+    <!-- LOGOUT BUTTON -->
+    <a href="/logout1" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </a>
+</div>
+
+<div class="dashboard-grid">
+    <a href="/view_course_college" class="dashboard-card">
+        <i class="card-icon fas fa-graduation-cap"></i>
+        <h2 class="card-title">View Courses</h2>
+        <p class="card-description">Browse and manage all available courses</p>
+    </a>
+
+    <a href="/view_own_course" class="dashboard-card">
+        <i class="card-icon fas fa-book-open"></i>
+        <h2 class="card-title">View Own Courses</h2>
+        <p class="card-description">View courses assigned to your department</p>
+    </a>
+
+    <a href="/view_college" class="dashboard-card">
+        <i class="card-icon fas fa-user-circle"></i>
+        <h2 class="card-title">College Profile</h2>
+        <p class="card-description">View and update college profile information</p>
+    </a>
+
+    <a href="/view_student_college" class="dashboard-card">
+        <i class="card-icon fas fa-users"></i>
+        <h2 class="card-title">View Students</h2>
+        <p class="card-description">Access student information and records</p>
+    </a>
+
+    <a href="/view_internal_mark" class="dashboard-card">
+        <i class="card-icon fas fa-chart-bar"></i>
+        <h2 class="card-title">Internal Marks</h2>
+        <p class="card-description">Manage and view internal examination marks</p>
+    </a>
+
+    <a href="/college_change_password_admin" class="dashboard-card">
+        <i class="card-icon fas fa-key"></i>
+        <h2 class="card-title">Change Password</h2>
+        <p class="card-description">Update your account password and security settings</p>
+    </a>
+</div>
+
+<div class="footer">
+    <p>© 2024 College Management System | Secure ID Platform</p>
+</div>
+
+</body>
+</html>

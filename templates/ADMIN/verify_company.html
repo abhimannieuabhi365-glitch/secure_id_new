@@ -1,0 +1,333 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{##}
+{#<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>#}
+{##}
+{#</head>#}
+{#{% extends 'admin/admin_home.html' %}#}
+{#{% block body %}#}
+{#<body>#}
+{#<form action="" method="get" enctype="multipart/form-data">#}
+{#<table border="1" class="table table-hover table-secondary">#}
+{#  <tr align="center" class="table-dark">#}
+{#    <th colspan="9" scope="col">COMPANY VERIFICATION</th>#}
+{#    </tr>#}
+{#  <tr align="center" class="table-dark">#}
+{#    <td >Sl No</td>#}
+{#    <td >Name</td>#}
+{#    <td >Email </td>#}
+{#    <td >Phone No</td>#}
+{#    <td>Place</td>#}
+{#    <td>Post</td>#}
+{#    <td>Pin</td>#}
+{#    <td>Proof</td>#}
+{#    <td >Action</td>#}
+{#  </tr>#}
+{#    {% for i in data %}#}
+{#  <tr align="center">#}
+{#    <td>{{ forloop.counter }}</td>#}
+{#    <td>{{ i.name }}</td>#}
+{#    <td>{{ i.email }}</td>#}
+{#    <td>{{ i.phone }}</td>#}
+{#    <td>{{ i.place }}</td>#}
+{#    <td>{{ i.post }}</td>#}
+{#    <td>{{ i.pin }}</td>#}
+{#    <td><img src="{{ i.proof }}" width="100px" height="100px"> </td>#}
+{#      {% if i.status == "pending" %}#}
+{#    <td align="center"><a href="/accept_company/{{ i.id }}" style="background: #bad3ff" class="btn btn-sm">Accept</a> <br> <br>   <a href="/reject_company/{{ i.id }}" class='btn btn-sm' style="background: #ffcabb">Reject</a></td>#}
+{#    {% elif i.status == 'company' %}#}
+{#    <td style="color: #20c997">Approved</td>#}
+{#    {% else %}#}
+{#    <td style="color: #f44a40">Rejected</td>#}
+{#    {% endif %}#}
+{#  </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{##}
+{#</form>#}
+{#</body>#}
+{#{% endblock %}#}
+{#</html>#}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Company Verification</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+/* Blue Theme Styles - Override Bootstrap and match previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    border: 2px solid #2c3e50;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin-bottom: 0;
+}
+
+/* First header (COMPANY VERIFICATION title) - Different style */
+.table-dark th[colspan="9"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Second header row - Different style */
+tr.table-dark:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Column widths */
+td:nth-child(1) { /* Sl No */
+    width: 5%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* Name */
+    width: 15%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* Email */
+    width: 18%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+td:nth-child(4) { /* Phone No */
+    width: 12%;
+}
+
+td:nth-child(5) { /* Place */
+    width: 10%;
+}
+
+td:nth-child(6) { /* Post */
+    width: 10%;
+}
+
+td:nth-child(7) { /* Pin */
+    width: 8%;
+}
+
+td:nth-child(8) { /* Proof */
+    width: 12%;
+}
+
+td:nth-child(9) { /* Action */
+    width: 10%;
+    background: #f8f9fa;
+}
+
+/* Button styling */
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 15px;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    margin: 3px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Accept button - Blue */
+.btn[href*="accept_company"],
+.btn[style*="background: #bad3ff"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: 2px solid #3498db;
+}
+
+/* Reject button - Red */
+.btn[href*="reject_company"],
+.btn[style*="background: #ffcabb"] {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: 2px solid #e74c3c;
+}
+
+/* Remove inline background styles */
+.btn[style*="background: #bad3ff"],
+.btn[style*="background: #ffcabb"] {
+    background: none;
+}
+
+/* Image styling */
+td img {
+    border: 2px solid #3498db;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* Status styling */
+td[style*="color: #20c997"] {
+    color: #20c997 !important;
+    font-weight: 600;
+    background: rgba(32, 201, 151, 0.1);
+    border: 2px solid #20c997 !important;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+td[style*="color: #f44a40"] {
+    color: #f44a40 !important;
+    font-weight: 600;
+    background: rgba(244, 74, 64, 0.1);
+    border: 2px solid #f44a40 !important;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1250px) {
+    form {
+        width: 95%;
+        overflow-x: auto;
+    }
+
+    table {
+        display: block;
+        min-width: 1150px;
+    }
+
+    .table-dark th[colspan="9"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    td, th {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 70px;
+    }
+
+    td img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Align center for table cells */
+tr[align="center"] td {
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+<form action="" method="get" enctype="multipart/form-data">
+<table border="1" class="table table-hover table-secondary">
+  <tr align="center" class="table-dark">
+    <th colspan="9" scope="col">COMPANY VERIFICATION</th>
+    </tr>
+  <tr align="center" class="table-dark">
+    <td >Sl No</td>
+    <td >Name</td>
+    <td >Email </td>
+    <td >Phone No</td>
+    <td>Place</td>
+    <td>Post</td>
+    <td>Pin</td>
+    <td>Proof</td>
+    <td >Action</td>
+  </tr>
+    {% for i in data %}
+  <tr align="center">
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.name }}</td>
+    <td>{{ i.email }}</td>
+    <td>{{ i.phone }}</td>
+    <td>{{ i.place }}</td>
+    <td>{{ i.post }}</td>
+    <td>{{ i.pin }}</td>
+    <td><img src="{{ i.proof }}" width="100px" height="100px"> </td>
+      {% if i.status == "pending" %}
+    <td align="center"><a href="/accept_company/{{ i.id }}" style="background: #bad3ff" class="btn btn-sm">Accept</a> <br> <br>   <a href="/reject_company/{{ i.id }}" class='btn btn-sm' style="background: #ffcabb">Reject</a></td>
+    {% elif i.status == 'company' %}
+    <td style="color: #20c997">Approved</td>
+    {% else %}
+    <td style="color: #f44a40">Rejected</td>
+    {% endif %}
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+</body>
+</html>

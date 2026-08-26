@@ -1,0 +1,817 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/add_internal_mark_post">#}
+{#  <table width="504" height="501" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="col">INTERNAL MARK</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>subject</td>#}
+{#        <td><select id="sub" name="sub">#}
+{#        <option name="sub" id="sub">_____SELECT_SUBJECT___</option>#}
+{#            {% for i in sub %}#}
+{#            <option name="sub" value="{{ i.id }}">{{ i.name }}</option>#}
+{#            {% endfor %}#}
+{#        </select></td>#}
+{#    </tr>#}
+{#   <tr>#}
+{#      <td>student</td>#}
+{#        <td><select id="stud" name="stud">#}
+{#        <option name="stud" id="stud">_____SELECT_STUDENT___</option>#}
+{#            {% for i in stud %}#}
+{#            <option name="stud" value="{{ i.id }}">{{ i.name }}</option>#}
+{#            {% endfor %}#}
+{#        </select></td>#}
+{##}
+{#    <tr>#}
+{#      <td>mark</td>#}
+{#      <td><label for="textfield5"></label>#}
+{#      <input type="text" name="textfield5" id="textfield5" /></td>#}
+{#    </tr>#}
+{#    <tr><center>#}
+{#      <td colspan="2"><input type="submit" name="button" id="button" value="Submit" /></td></center>center>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Internal Marks Entry</title>#}
+{#<style type="text/css">#}
+{#/* Blue Theme Styles */#}
+{#* {#}
+{#    margin: 0;#}
+{#    padding: 0;#}
+{#    box-sizing: border-box;#}
+{#    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#}#}
+{##}
+{#body {#}
+{#    background: linear-gradient(135deg, #1a2980, #26d0ce);#}
+{#    min-height: 100vh;#}
+{#    display: flex;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    padding: 20px;#}
+{#}#}
+{##}
+{##form1 {#}
+{#    background: rgba(255, 255, 255, 0.95);#}
+{#    border-radius: 15px;#}
+{#    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);#}
+{#    overflow: hidden;#}
+{#    width: 550px;#}
+{#    border: 2px solid #2c3e50;#}
+{#}#}
+{##}
+{#table {#}
+{#    width: 100%;#}
+{#    border-collapse: collapse;#}
+{#    border: none !important;#}
+{#}#}
+{##}
+{#th {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    padding: 20px;#}
+{#    font-size: 22px;#}
+{#    font-weight: 600;#}
+{#    letter-spacing: 1px;#}
+{#    border: none !important;#}
+{#    text-transform: uppercase;#}
+{#}#}
+{##}
+{#tr {#}
+{#    transition: all 0.3s ease;#}
+{#}#}
+{##}
+{#tr:hover {#}
+{#    background-color: rgba(52, 152, 219, 0.1);#}
+{#}#}
+{##}
+{#td {#}
+{#    padding: 15px;#}
+{#    border: 1px solid #e0e0e0 !important;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#}#}
+{##}
+{#td:first-child {#}
+{#    background-color: #ecf0f1;#}
+{#    font-weight: 600;#}
+{#    width: 30%;#}
+{#    color: #2c3e50;#}
+{#}#}
+{##}
+{#select, input[type="text"] {#}
+{#    width: 100%;#}
+{#    padding: 12px 15px;#}
+{#    border: 2px solid #3498db;#}
+{#    border-radius: 8px;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#    background: white;#}
+{#    transition: all 0.3s ease;#}
+{#    outline: none;#}
+{#}#}
+{##}
+{#select:focus, input[type="text"]:focus {#}
+{#    border-color: #2980b9;#}
+{#    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);#}
+{#}#}
+{##}
+{#option {#}
+{#    padding: 10px;#}
+{#    font-size: 15px;#}
+{#}#}
+{##}
+{#option:first-child {#}
+{#    color: #7f8c8d;#}
+{#    font-style: italic;#}
+{#}#}
+{##}
+{##button {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 14px 30px;#}
+{#    font-size: 18px;#}
+{#    font-weight: 600;#}
+{#    border-radius: 8px;#}
+{#    cursor: pointer;#}
+{#    transition: all 0.3s ease;#}
+{#    width: 200px;#}
+{#    display: block;#}
+{#    margin: 20px auto;#}
+{#    letter-spacing: 1px;#}
+{#    text-transform: uppercase;#}
+{#}#}
+{##}
+{##button:hover {#}
+{#    background: linear-gradient(135deg, #2980b9, #1c5a7d);#}
+{#    transform: translateY(-2px);#}
+{#    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);#}
+{#}#}
+{##}
+{##button:active {#}
+{#    transform: translateY(0);#}
+{#}#}
+{##}
+{#/* Custom scrollbar for select */#}
+{#select::-webkit-scrollbar {#}
+{#    width: 8px;#}
+{#}#}
+{##}
+{#select::-webkit-scrollbar-track {#}
+{#    background: #f1f1f1;#}
+{#    border-radius: 4px;#}
+{#}#}
+{##}
+{#select::-webkit-scrollbar-thumb {#}
+{#    background: #3498db;#}
+{#    border-radius: 4px;#}
+{#}#}
+{##}
+{#select::-webkit-scrollbar-thumb:hover {#}
+{#    background: #2980b9;#}
+{#}#}
+{##}
+{#/* Label styling */#}
+{#td:first-child {#}
+{#    background: linear-gradient(135deg, #ecf0f1, #dfe6e9);#}
+{#    font-weight: 600;#}
+{#    text-align: right;#}
+{#    padding-right: 25px;#}
+{#}#}
+{##}
+{#/* Center alignment for the submit button cell */#}
+{#tr:last-child td {#}
+{#    text-align: center;#}
+{#    background: #f8f9fa;#}
+{#    border-top: 2px solid #3498db !important;#}
+{#}#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/add_internal_mark_post">#}
+{#  <table width="504" height="501" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="col">INTERNAL MARK</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>subject</td>#}
+{#        <td><select id="sub" name="sub">#}
+{#        <option name="sub" id="sub">_____SELECT_SUBJECT___</option>#}
+{#            {% for i in sub %}#}
+{#            <option name="sub" value="{{ i.id }}">{{ i.name }}</option>#}
+{#            {% endfor %}#}
+{#        </select></td>#}
+{#    </tr>#}
+{#   <tr>#}
+{#      <td>student</td>#}
+{#        <td><select id="stud" name="stud">#}
+{#        <option name="stud" id="stud">_____SELECT_STUDENT___</option>#}
+{#            {% for i in stud %}#}
+{#            <option name="stud" value="{{ i.id }}">{{ i.name }}</option>#}
+{#            {% endfor %}#}
+{#        </select></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>mark</td>#}
+{#      <td><label for="textfield5"></label>#}
+{#      <input type="text" name="textfield5" id="textfield5" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td colspan="2"><input type="submit" name="button" id="button" value="Submit" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/add_internal_mark_post">#}
+{#  <table width="711" height="364" border="1">#}
+{# <tr>      <th colspan="4" scope="row">subject-#}
+{##}
+{##}
+{#  <select name="select">#}
+{#        {% for i in sub %}#}
+{#      <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#      {% endfor %}#}
+{#  </select></th></tr>#}
+{##}
+{#    <tr>#}
+{#      <th colspan="4" scope="row">VIEW COURSE</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="124" scope="row">Slno</th>#}
+{#      <td width="142">student name</td>#}
+{#      <td width="326">course name</td>#}
+{#      <td width="91">description</td>#}
+{#        <td>Mark</td>#}
+{#    </tr>#}
+{#      {% for i in stud %}#}
+{#    <tr>#}
+{#      <th scope="row">{{ forloop.counter }}</th>#}
+{#      <th scope="row">{{ i.name }}</th>#}
+{#      <td>{{ i.OFFERED_LIST.COURSE.title }}</td>#}
+{#      <td>{{ i.OFFERED_LIST.COURSE.description }}</td>#}
+{#      <td>#}
+{#          <input name="mark" id="mark" type="text" required value="0" max="20">#}
+{#          <input name="studentid" id="mark" type="text" required value="{{ i.id }}">#}
+{##}
+{#      </td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  <tr><th colspan="4"><input type="submit" value="add"></th> </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Internal Mark Entry</title>
+
+<style>
+body {
+    background: #eaf3ff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+table {
+    width: 711px;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+th {
+    background: #1e88e5;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #bbdefb;
+}
+
+tr:nth-child(even) td {
+    background: #f1f8ff;
+}
+
+select {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #64b5f6;
+    outline: none;
+}
+
+input[type="text"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #64b5f6;
+    border-radius: 4px;
+    text-align: center;
+}
+
+input[type="submit"] {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #1565c0;
+}
+
+table, th, td {
+    border: 1px solid #90caf9;
+}
+</style>
+
+    <script type="text/javascript">
+var xmlHttp;
+            function adds(eid){
+               //alert(eid);
+                if (typeof XMLHttpRequest != "undefined"){
+                xmlHttp= new XMLHttpRequest();
+                }
+                else if (window.ActiveXObject){
+                    xmlHttp= new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if (xmlHttp==null){
+                    alert("Browser does not support XMLHTTP Request")
+                    return;
+                }
+                var url="/ajaxinternal/"+eid
+                xmlHttp.onreadystatechange = stateChange;
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send(null);
+            }
+
+            function stateChange(){
+                if(xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+                    document.getElementById("sub").innerHTML=xmlHttp.responseText
+
+                }
+            }
+</script>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/add_internal_mark_post">
+  <table border="1">
+    <tr>
+      <th colspan="5" scope="row">
+        subject -
+        <select name="select" onchange="adds(this.value)" required>
+        <option value="">select</option>
+          {% for i in sub %}
+          <option value="{{ i.id }}">{{ i.name }}</option>
+          {% endfor %}
+        </select>
+      </th>
+    </tr>
+
+    <tr>
+      <th colspan="5" scope="row">VIEW COURSE</th>
+    </tr>
+
+
+   <tr>
+      <td colspan="2"><div id="sub"></div></td>
+  </tr>
+
+
+
+    <tr>
+      <th colspan="5">
+        <input type="submit" value="Add" />
+      </th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"#}
+{#"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Internal Mark Entry</title>#}
+{##}
+{#<style>#}
+{#body {#}
+{#    background: linear-gradient(135deg, #eaf3ff 0%, #f0f7ff 100%);#}
+{#    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#    margin: 0;#}
+{#    padding: 20px;#}
+{#    min-height: 100vh;#}
+{#}#}
+{##}
+{#.container {#}
+{#    max-width: 900px;#}
+{#    margin: 0 auto;#}
+{#    background: #ffffff;#}
+{#    border-radius: 12px;#}
+{#    box-shadow: 0 8px 25px rgba(25, 118, 210, 0.15);#}
+{#    overflow: hidden;#}
+{#}#}
+{##}
+{#form {#}
+{#    padding: 0;#}
+{#}#}
+{##}
+{#.form-header {#}
+{#    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);#}
+{#    color: #ffffff;#}
+{#    padding: 20px;#}
+{#    text-align: center;#}
+{#}#}
+{##}
+{#.form-header h1 {#}
+{#    margin: 0;#}
+{#    font-size: 24px;#}
+{#    font-weight: 500;#}
+{#}#}
+{##}
+{#.subject-selector {#}
+{#    display: flex;#}
+{#    align-items: center;#}
+{#    justify-content: center;#}
+{#    gap: 15px;#}
+{#    margin-top: 10px;#}
+{#    flex-wrap: wrap;#}
+{#}#}
+{##}
+{#.subject-selector label {#}
+{#    font-size: 16px;#}
+{#    font-weight: 500;#}
+{#}#}
+{##}
+{#.subject-selector select {#}
+{#    padding: 10px 15px;#}
+{#    border-radius: 8px;#}
+{#    border: 2px solid rgba(255, 255, 255, 0.3);#}
+{#    background: rgba(255, 255, 255, 0.1);#}
+{#    color: white;#}
+{#    font-size: 15px;#}
+{#    min-width: 250px;#}
+{#    outline: none;#}
+{#    transition: all 0.3s ease;#}
+{#    cursor: pointer;#}
+{#}#}
+{##}
+{#.subject-selector select:hover {#}
+{#    background: rgba(255, 255, 255, 0.2);#}
+{#    border-color: rgba(255, 255, 255, 0.5);#}
+{#}#}
+{##}
+{#.subject-selector select option {#}
+{#    background: #1e88e5;#}
+{#    color: white;#}
+{#    padding: 10px;#}
+{#}#}
+{##}
+{#.table-container {#}
+{#    overflow-x: auto;#}
+{#    padding: 20px;#}
+{#}#}
+{##}
+{#table {#}
+{#    width: 100%;#}
+{#    border-collapse: collapse;#}
+{#    background: #ffffff;#}
+{#}#}
+{##}
+{#thead {#}
+{#    background: #f5f9ff;#}
+{#}#}
+{##}
+{#th {#}
+{#    background: #1e88e5;#}
+{#    color: #ffffff;#}
+{#    padding: 15px;#}
+{#    text-align: center;#}
+{#    font-weight: 600;#}
+{#    font-size: 15px;#}
+{#    border: none;#}
+{#}#}
+{##}
+{#td {#}
+{#    padding: 12px 15px;#}
+{#    text-align: center;#}
+{#    border-bottom: 1px solid #e3f2fd;#}
+{#    vertical-align: middle;#}
+{#}#}
+{##}
+{#tr:nth-child(even) {#}
+{#    background: #f8fbff;#}
+{#}#}
+{##}
+{#tr:hover {#}
+{#    background: #e3f2fd;#}
+{#}#}
+{##}
+{#.course-header {#}
+{#    background: #1976d2;#}
+{#    color: white;#}
+{#}#}
+{##}
+{#.course-header th {#}
+{#    background: #1976d2;#}
+{#    font-size: 16px;#}
+{#    padding: 18px;#}
+{#}#}
+{##}
+{#.section-title {#}
+{#    font-weight: 600;#}
+{#    color: #1565c0;#}
+{#}#}
+{##}
+{#input[type="text"] {#}
+{#    width: 80px;#}
+{#    padding: 8px 10px;#}
+{#    border: 2px solid #bbdefb;#}
+{#    border-radius: 6px;#}
+{#    text-align: center;#}
+{#    font-size: 14px;#}
+{#    transition: all 0.3s ease;#}
+{#    box-sizing: border-box;#}
+{#}#}
+{##}
+{#input[type="text"]:focus {#}
+{#    outline: none;#}
+{#    border-color: #1e88e5;#}
+{#    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);#}
+{#}#}
+{##}
+{#.form-footer {#}
+{#    padding: 25px;#}
+{#    background: #f8fbff;#}
+{#    border-top: 1px solid #e3f2fd;#}
+{#    text-align: center;#}
+{#}#}
+{##}
+{#input[type="submit"] {#}
+{#    background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 12px 40px;#}
+{#    font-size: 16px;#}
+{#    font-weight: 500;#}
+{#    border-radius: 8px;#}
+{#    cursor: pointer;#}
+{#    transition: all 0.3s ease;#}
+{#    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);#}
+{#}#}
+{##}
+{#input[type="submit"]:hover {#}
+{#    background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);#}
+{#    transform: translateY(-2px);#}
+{#    box-shadow: 0 6px 16px rgba(25, 118, 210, 0.3);#}
+{#}#}
+{##}
+{#input[type="submit"]:active {#}
+{#    transform: translateY(0);#}
+{#}#}
+{##}
+{##sub {#}
+{#    padding: 15px;#}
+{#    background: #f8fbff;#}
+{#    border-radius: 8px;#}
+{#    margin: 10px 0;#}
+{#    border: 1px dashed #bbdefb;#}
+{#    min-height: 60px;#}
+{#    display: flex;#}
+{#    flex-direction: column;#}
+{#    align-items: center;#}
+{#    justify-content: center;#}
+{#    color: #666;#}
+{#}#}
+{##}
+{#/* Responsive design */#}
+{#@media (max-width: 768px) {#}
+{#    body {#}
+{#        padding: 10px;#}
+{#    }#}
+{##}
+{#    .container {#}
+{#        border-radius: 8px;#}
+{#    }#}
+{##}
+{#    .subject-selector {#}
+{#        flex-direction: column;#}
+{#        align-items: stretch;#}
+{#    }#}
+{##}
+{#    .subject-selector select {#}
+{#        min-width: 100%;#}
+{#    }#}
+{##}
+{#    th, td {#}
+{#        padding: 10px 8px;#}
+{#        font-size: 14px;#}
+{#    }#}
+{##}
+{#    input[type="text"] {#}
+{#        width: 70px;#}
+{#        padding: 6px 8px;#}
+{#    }#}
+{##}
+{#    input[type="submit"] {#}
+{#        padding: 10px 30px;#}
+{#        font-size: 15px;#}
+{#    }#}
+{#}#}
+{##}
+{#/* Loading animation for AJAX content */#}
+{#.loading {#}
+{#    display: inline-block;#}
+{#    width: 20px;#}
+{#    height: 20px;#}
+{#    border: 3px solid #f3f3f3;#}
+{#    border-top: 3px solid #1e88e5;#}
+{#    border-radius: 50%;#}
+{#    animation: spin 1s linear infinite;#}
+{#    margin-right: 10px;#}
+{#}#}
+{##}
+{#@keyframes spin {#}
+{#    0% { transform: rotate(0deg); }#}
+{#    100% { transform: rotate(360deg); }#}
+{#}#}
+{##}
+{#/* Alert styling */#}
+{#.alert {#}
+{#    padding: 15px;#}
+{#    border-radius: 8px;#}
+{#    margin: 10px 0;#}
+{#    text-align: center;#}
+{#}#}
+{##}
+{#.alert-info {#}
+{#    background: #e3f2fd;#}
+{#    color: #1565c0;#}
+{#    border: 1px solid #bbdefb;#}
+{#}#}
+{##}
+{#.alert-success {#}
+{#    background: #e8f5e9;#}
+{#    color: #2e7d32;#}
+{#    border: 1px solid #c8e6c9;#}
+{#}#}
+{#</style>#}
+{##}
+{#<script type="text/javascript">#}
+{#var xmlHttp;#}
+{##}
+{#function adds(eid) {#}
+{#    if (typeof XMLHttpRequest != "undefined") {#}
+{#        xmlHttp = new XMLHttpRequest();#}
+{#    } else if (window.ActiveXObject) {#}
+{#        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");#}
+{#    }#}
+{##}
+{#    if (xmlHttp == null) {#}
+{#        alert("Browser does not support XMLHTTP Request");#}
+{#        return;#}
+{#    }#}
+{##}
+{#    // Show loading state#}
+{#    var subDiv = document.getElementById("sub");#}
+{#    subDiv.innerHTML = '<div class="loading"></div> Loading course data...';#}
+{##}
+{#    var url = "/ajaxinternal/" + eid;#}
+{#    xmlHttp.onreadystatechange = stateChange;#}
+{#    xmlHttp.open("GET", url, true);#}
+{#    xmlHttp.send(null);#}
+{#}#}
+{##}
+{#function stateChange() {#}
+{#    if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {#}
+{#        if (xmlHttp.status == 200) {#}
+{#            document.getElementById("sub").innerHTML = xmlHttp.responseText;#}
+{#        } else {#}
+{#            document.getElementById("sub").innerHTML =#}
+{#                '<div class="alert alert-info">Error loading data. Please try again.</div>';#}
+{#        }#}
+{#    }#}
+{#}#}
+{##}
+{#// Initialize with first subject selected if exists#}
+{#window.onload = function() {#}
+{#    var select = document.querySelector('select[name="select"]');#}
+{#    if (select && select.options.length > 0) {#}
+{#        adds(select.value);#}
+{#    }#}
+{#};#}
+{#</script>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<div class="container">#}
+{#    <form id="form1" name="form1" method="post" action="/add_internal_mark_post">#}
+{#        <div class="form-header">#}
+{#            <h1>Internal Mark Entry System</h1>#}
+{#            <div class="subject-selector">#}
+{#                <label for="subjectSelect">Select Subject:</label>#}
+{#                <select name="select" id="subjectSelect" onchange="adds(this.value)">#}
+{#                    <option value="">-- Select Subject --</option>#}
+{#                    {% for i in sub %}#}
+{#                    <option value="{{ i.id }}">{{ i.name }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="table-container">#}
+{#            <table>#}
+{#                <thead class="course-header">#}
+{#                    <tr>#}
+{#                        <th colspan="5">COURSE INFORMATION</th>#}
+{#                    </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{#                    <tr>#}
+{#                        <td class="section-title">Sl.No</td>#}
+{#                        <td class="section-title">Student Name</td>#}
+{#                        <td class="section-title">Course Name</td>#}
+{#                        <td class="section-title">Description</td>#}
+{#                        <td class="section-title">Mark</td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td colspan="5">#}
+{#                            <div id="sub">#}
+{##}
+{#                                <div class="alert alert-info">#}
+{#                                    Please select a subject to view course data#}
+{#                                </div>#}
+{#         #}
+{#                            </div>#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                </tbody>#}
+{#            </table>#}
+{#        </div>#}
+{##}
+{#        <div class="form-footer">#}
+{#            <input type="submit" value="Add Marks" />#}
+{#        </div>#}
+{#    </form>#}
+{#</div>#}
+{#</body>#}
+{#</html>#}

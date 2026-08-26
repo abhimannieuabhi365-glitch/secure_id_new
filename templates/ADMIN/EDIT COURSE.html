@@ -1,0 +1,485 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/edit_course_post/{{ data.id }}">#}
+{#  <table width="376" height="231" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">EDIT COURSE</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="92" scope="row">TITLE</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.title }}" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">DISCRIPTION</th>#}
+{#      <td><label for="textarea"></label>#}
+{#      <input type="text" value="{{ data.description }}" name="textarea" id="textarea" cols="45" rows="5"></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">#}
+{#      <input type="submit" name="button" id="button" value="EDIT" /></th>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+
+
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Edit Course</title>#}
+{#<style type="text/css">#}
+{#/* Blue Theme Styles - Consistent with previous pages */#}
+{#* {#}
+{#    margin: 0;#}
+{#    padding: 0;#}
+{#    box-sizing: border-box;#}
+{#    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;#}
+{#}#}
+{##}
+{#body {#}
+{#    background: linear-gradient(135deg, #1a2980, #26d0ce);#}
+{#    min-height: 100vh;#}
+{#    display: flex;#}
+{#    justify-content: center;#}
+{#    align-items: center;#}
+{#    padding: 20px;#}
+{#}#}
+{##}
+{##form1 {#}
+{#    background: rgba(255, 255, 255, 0.95);#}
+{#    border-radius: 15px;#}
+{#    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);#}
+{#    overflow: hidden;#}
+{#    width: 500px;#}
+{#    border: 2px solid #2c3e50;#}
+{#}#}
+{##}
+{#table {#}
+{#    width: 100%;#}
+{#    border-collapse: collapse;#}
+{#    border: none !important;#}
+{#}#}
+{##}
+{#th {#}
+{#    color: white;#}
+{#    padding: 15px;#}
+{#    font-size: 16px;#}
+{#    font-weight: 600;#}
+{#    border: 1px solid #e0e0e0 !important;#}
+{#    text-align: left;#}
+{#}#}
+{##}
+{#th[scope="row"] {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    font-weight: 600;#}
+{#    width: 30%;#}
+{#    padding: 15px;#}
+{#}#}
+{##}
+{#th[colspan="2"] {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    padding: 20px;#}
+{#    font-size: 22px;#}
+{#    font-weight: 600;#}
+{#    letter-spacing: 1px;#}
+{#    border: none !important;#}
+{#    text-transform: uppercase;#}
+{#    text-align: center;#}
+{#}#}
+{##}
+{#tr {#}
+{#    transition: all 0.3s ease;#}
+{#}#}
+{##}
+{#tr:hover {#}
+{#    background-color: rgba(52, 152, 219, 0.1);#}
+{#}#}
+{##}
+{#td {#}
+{#    padding: 15px;#}
+{#    border: 1px solid #e0e0e0 !important;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#    background: white;#}
+{#}#}
+{##}
+{#input[type="text"] {#}
+{#    width: 100%;#}
+{#    padding: 12px 15px;#}
+{#    border: 2px solid #3498db;#}
+{#    border-radius: 8px;#}
+{#    font-size: 16px;#}
+{#    color: #2c3e50;#}
+{#    background: white;#}
+{#    transition: all 0.3s ease;#}
+{#    outline: none;#}
+{#}#}
+{##}
+{#input[type="text"]:focus {#}
+{#    border-color: #2980b9;#}
+{#    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);#}
+{#}#}
+{##}
+{##button {#}
+{#    background: linear-gradient(135deg, #3498db, #2980b9);#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 14px 30px;#}
+{#    font-size: 18px;#}
+{#    font-weight: 600;#}
+{#    border-radius: 8px;#}
+{#    cursor: pointer;#}
+{#    transition: all 0.3s ease;#}
+{#    width: 200px;#}
+{#    display: block;#}
+{#    margin: 20px auto;#}
+{#    letter-spacing: 1px;#}
+{#    text-transform: uppercase;#}
+{#}#}
+{##}
+{##button:hover {#}
+{#    background: linear-gradient(135deg, #2980b9, #1c5a7d);#}
+{#    transform: translateY(-2px);#}
+{#    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);#}
+{#}#}
+{##}
+{##button:active {#}
+{#    transform: translateY(0);#}
+{#}#}
+{##}
+{#/* Style for the last row containing the submit button */#}
+{#tr:last-child th[colspan="2"] {#}
+{#    background: transparent;#}
+{#    padding: 10px;#}
+{#    border: none !important;#}
+{#}#}
+{##}
+{#/* Table row alternating effect */#}
+{#tr:nth-child(even) th[scope="row"] {#}
+{#    background: linear-gradient(135deg, #2c82c9, #2573a7);#}
+{#}#}
+{##}
+{#tr:nth-child(even) td {#}
+{#    background: #f8fafc;#}
+{#}#}
+{##}
+{#/* Responsive adjustments */#}
+{#@media (max-width: 600px) {#}
+{#    #form1 {#}
+{#        width: 95%;#}
+{#    }#}
+{##}
+{#    table {#}
+{#        display: block;#}
+{#        overflow-x: auto;#}
+{#    }#}
+{##}
+{#    th[scope="row"], td {#}
+{#        display: block;#}
+{#        width: 100%;#}
+{#        text-align: left;#}
+{#    }#}
+{##}
+{#    th[scope="row"] {#}
+{#        border-bottom: none;#}
+{#        border-top: 2px solid #3498db;#}
+{#    }#}
+{##}
+{#    td {#}
+{#        border-top: none;#}
+{#    }#}
+{##}
+{#    #button {#}
+{#        width: 180px;#}
+{#        padding: 12px 25px;#}
+{#    }#}
+{#}#}
+{##}
+{#/* Note: The HTML uses input type="text" for textarea which should be <textarea> */#}
+{#/* We'll style it appropriately */#}
+{#input#textarea {#}
+{#    min-height: 120px;#}
+{#    resize: vertical;#}
+{#    font-family: inherit;#}
+{#}#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/edit_course_post/{{ data.id }}">#}
+{#  <table width="376" height="231" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">EDIT COURSE</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="92" scope="row">TITLE</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" value="{{ data.title }}" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">DESCRIPTION</th>#}
+{#      <td><label for="textarea"></label>#}
+{#      <input type="text" value="{{ data.description }}" name="textarea" id="textarea" cols="45" rows="5"></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">#}
+{#      <input type="submit" name="button" id="button" value="EDIT" /></th>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Edit Course</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 500px;
+    border: 2px solid #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+}
+
+th {
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: left;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    width: 30%;
+    padding: 15px;
+}
+
+th[colspan="2"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 16px;
+    color: #2c3e50;
+    background: white;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #2c3e50;
+    background: white;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+#button {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#button:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5a7d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+}
+
+#button:active {
+    transform: translateY(0);
+}
+
+/* Style for the last row containing the submit button */
+tr:last-child th[colspan="2"] {
+    background: transparent;
+    padding: 10px;
+    border: none !important;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) th[scope="row"] {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    th[scope="row"], td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    th[scope="row"] {
+        border-bottom: none;
+        border-top: 2px solid #3498db;
+    }
+
+    td {
+        border-top: none;
+    }
+
+    #button {
+        width: 180px;
+        padding: 12px 25px;
+    }
+}
+
+/* Style for textarea input */
+input#textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+</style>
+
+<script type="text/javascript">
+function validateForm() {
+    var title = document.getElementById("textfield").value.trim();
+    var description = document.getElementById("textarea").value.trim();
+    var lettersOnly = /^[A-Za-z\s]+$/;
+
+    if(title === "") {
+        alert("Course title is required.");
+        return false;
+    } else if(!lettersOnly.test(title)) {
+        alert("Course title must contain letters only.");
+        return false;
+    }
+
+    if(description === "") {
+        alert("Description is required.");
+        return false;
+    }
+
+    return true; // form is valid
+}
+</script>
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/edit_course_post/{{ data.id }}" onsubmit="return validateForm()">
+  <table width="376" height="231" border="1">
+    <tr>
+      <th colspan="2" scope="row">EDIT COURSE</th>
+    </tr>
+    <tr>
+      <th width="92" scope="row">TITLE</th>
+      <td width="130">
+        <label for="textfield"></label>
+        <input type="text" value="{{ data.title }}" name="textfield" id="textfield" />
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">DESCRIPTION</th>
+      <td>
+        <label for="textarea"></label>
+        <input type="text" value="{{ data.description }}" name="textarea" id="textarea" cols="45" rows="5"/>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row">
+        <input type="submit" name="button" id="button" value="EDIT" />
+      </th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,942 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="/add_subject_post/{{ id }}">#}
+{#  <table width="376" height="231" border="1">#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row">ADD SUBJECT</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="92" scope="row">NAME</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" name="textfield" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">DISCRIPTION</th>#}
+{#      <td><label for="textarea"></label>#}
+{#      <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>#}
+{#    </tr>#}
+{#          <tr>#}
+{#      <th width="92" scope="row">SEMESTER</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" name="semester" id="textfield" /></td>#}
+{#    </tr>#}
+{#        <tr>#}
+{#      <th width="92" scope="row">CODE</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" name="code" id="textfield" /></td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <th width="92" scope="row">CREDIT</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" name="credit" id="textfield" /></td>#}
+{#    </tr>#}
+{#               <tr>#}
+{#      <th width="92" scope="row">MAX_MARK</th>#}
+{#      <td width="130"><label for="textfield"></label>#}
+{#      <input type="text" name="max_mark" id="textfield" /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="ADD" /></th>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Add Subject - Digital Waves</title>#}
+{##}
+{#<!-- Google Web Fonts -->#}
+{#<link rel="preconnect" href="https://fonts.gstatic.com">#}
+{#<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">#}
+{##}
+{#<!-- Font Awesome -->#}
+{#<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">#}
+{##}
+{#<!-- Bootstrap CSS -->#}
+{#<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">#}
+{##}
+{#<style>#}
+{#    /* Apply theme from previous Add Course page with blue color scheme */#}
+{#    body {#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#        background: #f8f9fa;#}
+{#        min-height: 100vh;#}
+{#        display: flex;#}
+{#        align-items: center;#}
+{#        justify-content: center;#}
+{#        padding: 20px;#}
+{#        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);#}
+{#    }#}
+{##}
+{#    .container {#}
+{#        max-width: 800px;#}
+{#        width: 100%;#}
+{#    }#}
+{##}
+{#    .form-container {#}
+{#        background: white;#}
+{#        border-radius: 10px;#}
+{#        box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);#}
+{#        overflow: hidden;#}
+{#        animation: fadeIn 0.5s ease-out;#}
+{#        border: 1px solid #e1f5fe;#}
+{#    }#}
+{##}
+{#    @keyframes fadeIn {#}
+{#        from {#}
+{#            opacity: 0;#}
+{#            transform: translateY(20px);#}
+{#        }#}
+{#        to {#}
+{#            opacity: 1;#}
+{#            transform: translateY(0);#}
+{#        }#}
+{#    }#}
+{##}
+{#    .form-header {#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        color: white;#}
+{#        padding: 30px;#}
+{#        text-align: center;#}
+{#        position: relative;#}
+{#    }#}
+{##}
+{#    .form-header h2 {#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        font-weight: 700;#}
+{#        margin: 0;#}
+{#        font-size: 32px;#}
+{#        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);#}
+{#    }#}
+{##}
+{#    .form-header:before {#}
+{#        content: '';#}
+{#        position: absolute;#}
+{#        bottom: 0;#}
+{#        left: 0;#}
+{#        width: 100%;#}
+{#        height: 20px;#}
+{#        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");#}
+{#        background-size: cover;#}
+{#    }#}
+{##}
+{#    .form-body {#}
+{#        padding: 40px;#}
+{#        margin-top: 10px;#}
+{#        background: #fafdff;#}
+{#    }#}
+{##}
+{#    .form-group label {#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        font-weight: 600;#}
+{#        color: #1565c0;#}
+{#        margin-bottom: 8px;#}
+{#        font-size: 16px;#}
+{#    }#}
+{##}
+{#    .form-control {#}
+{#        border: 2px solid #bbdefb;#}
+{#        border-radius: 5px;#}
+{#        padding: 12px 15px;#}
+{#        font-size: 16px;#}
+{#        transition: all 0.3s;#}
+{#        background-color: #f1f8ff;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#        color: #1565c0;#}
+{#    }#}
+{##}
+{#    .form-control:focus {#}
+{#        border-color: #2196f3;#}
+{#        box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);#}
+{#        background-color: white;#}
+{#    }#}
+{##}
+{#    textarea.form-control {#}
+{#        min-height: 120px;#}
+{#        resize: vertical;#}
+{#    }#}
+{##}
+{#    .btn-submit {#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        border: none;#}
+{#        color: white;#}
+{#        padding: 12px 30px;#}
+{#        font-size: 18px;#}
+{#        font-weight: 600;#}
+{#        border-radius: 5px;#}
+{#        cursor: pointer;#}
+{#        transition: all 0.3s;#}
+{#        width: 100%;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);#}
+{#    }#}
+{##}
+{#    .btn-submit:hover {#}
+{#        background: linear-gradient(45deg, #1976d2, #1565c0);#}
+{#        transform: translateY(-2px);#}
+{#        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);#}
+{#    }#}
+{##}
+{#    .btn-submit:active {#}
+{#        transform: translateY(0);#}
+{#    }#}
+{##}
+{#    .back-link {#}
+{#        display: inline-block;#}
+{#        margin-top: 20px;#}
+{#        color: #2196f3;#}
+{#        text-decoration: none;#}
+{#        font-weight: 600;#}
+{#        transition: all 0.3s;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#    }#}
+{##}
+{#    .back-link:hover {#}
+{#        color: #1565c0;#}
+{#        text-decoration: none;#}
+{#    }#}
+{##}
+{#    .logo {#}
+{#        text-align: center;#}
+{#        margin-bottom: 30px;#}
+{#    }#}
+{##}
+{#    .logo h1 {#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        color: #2196f3;#}
+{#        font-weight: 700;#}
+{#        font-size: 36px;#}
+{#        text-shadow: 0 2px 4px rgba(33, 150, 243, 0.1);#}
+{#    }#}
+{##}
+{#    .logo i {#}
+{#        color: #1976d2;#}
+{#    }#}
+{##}
+{#    /* Table styling to match form styling */#}
+{#    table {#}
+{#        width: 100%;#}
+{#        margin: 0;#}
+{#        border-collapse: separate;#}
+{#        border-spacing: 0;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#        background-color: white;#}
+{#        border: 1px solid #bbdefb;#}
+{#        border-radius: 8px;#}
+{#        overflow: hidden;#}
+{#    }#}
+{##}
+{#    table tr:first-child th {#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        color: white;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        font-weight: 600;#}
+{#        padding: 25px 20px;#}
+{#        text-align: center;#}
+{#        vertical-align: middle;#}
+{#        border: none;#}
+{#        font-size: 1.8rem;#}
+{#        letter-spacing: 1px;#}
+{#        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);#}
+{#    }#}
+{##}
+{#    table tr th {#}
+{#        background-color: #e3f2fd;#}
+{#        color: #1565c0;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        font-weight: 600;#}
+{#        padding: 20px;#}
+{#        text-align: left;#}
+{#        vertical-align: middle;#}
+{#        border: 1px solid #bbdefb;#}
+{#        border-right: none;#}
+{#        width: 30%;#}
+{#        font-size: 1.1rem;#}
+{#    }#}
+{##}
+{#    table tr td {#}
+{#        padding: 20px;#}
+{#        text-align: left;#}
+{#        vertical-align: middle;#}
+{#        border: 1px solid #bbdefb;#}
+{#        border-left: none;#}
+{#        width: 70%;#}
+{#        background-color: white;#}
+{#    }#}
+{##}
+{#    input[type="text"], textarea {#}
+{#        width: 100%;#}
+{#        padding: 12px 15px;#}
+{#        border: 2px solid #bbdefb;#}
+{#        border-radius: 5px;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#        font-size: 1rem;#}
+{#        transition: all 0.3s ease;#}
+{#        box-sizing: border-box;#}
+{#        background-color: #f1f8ff;#}
+{#        color: #1565c0;#}
+{#    }#}
+{##}
+{#    input[type="text"]:focus, textarea:focus {#}
+{#        border-color: #2196f3;#}
+{#        box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);#}
+{#        outline: none;#}
+{#        background-color: white;#}
+{#    }#}
+{##}
+{#    textarea {#}
+{#        min-height: 120px;#}
+{#        resize: vertical;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#    }#}
+{##}
+{#    input[type="submit"] {#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        border: none;#}
+{#        color: white;#}
+{#        padding: 12px 30px;#}
+{#        font-size: 18px;#}
+{#        font-weight: 600;#}
+{#        border-radius: 5px;#}
+{#        cursor: pointer;#}
+{#        transition: all 0.3s;#}
+{#        width: 100%;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);#}
+{#    }#}
+{##}
+{#    input[type="submit"]:hover {#}
+{#        background: linear-gradient(45deg, #1976d2, #1565c0);#}
+{#        transform: translateY(-2px);#}
+{#        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);#}
+{#    }#}
+{##}
+{#    input[type="submit"]:active {#}
+{#        transform: translateY(0);#}
+{#    }#}
+{##}
+{#    /* Row hover effect */#}
+{#    table tr:hover th,#}
+{#    table tr:hover td {#}
+{#        background-color: #e8f4ff;#}
+{#        transition: background-color 0.3s ease;#}
+{#    }#}
+{##}
+{#    /* Styling for the last row (submit button row) */#}
+{#    table tr:last-child th {#}
+{#        background-color: #e3f2fd;#}
+{#        text-align: center;#}
+{#        padding: 30px 20px;#}
+{#        border-bottom: 1px solid #bbdefb;#}
+{#    }#}
+{##}
+{#    /* Subject info box */#}
+{#    .subject-info {#}
+{#        background: linear-gradient(to right, #e3f2fd, #f1f8ff);#}
+{#        padding: 20px;#}
+{#        border-radius: 5px;#}
+{#        margin-bottom: 20px;#}
+{#        border-left: 4px solid #2196f3;#}
+{#        box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);#}
+{#    }#}
+{##}
+{#    .subject-info h5 {#}
+{#        color: #1565c0;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        margin-bottom: 10px;#}
+{#        font-size: 1.1rem;#}
+{#    }#}
+{##}
+{#    .subject-info p {#}
+{#        margin: 5px 0;#}
+{#        color: #1565c0;#}
+{#        font-size: 0.95rem;#}
+{#    }#}
+{##}
+{#    /* Character count for textarea */#}
+{#    .char-count {#}
+{#        font-size: 0.8rem;#}
+{#        color: #64b5f6;#}
+{#        text-align: right;#}
+{#        margin-top: 5px;#}
+{#    }#}
+{##}
+{#    /* Form Guidelines */#}
+{#    .form-guidelines {#}
+{#        background: linear-gradient(to right, #e8f5e9, #f1f8e9);#}
+{#        padding: 20px;#}
+{#        border-radius: 5px;#}
+{#        margin: 20px 0;#}
+{#        border-left: 4px solid #4caf50;#}
+{#        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);#}
+{#    }#}
+{##}
+{#    .form-guidelines h5 {#}
+{#        color: #2e7d32;#}
+{#        font-family: 'Jost', sans-serif;#}
+{#        margin-bottom: 10px;#}
+{#        font-size: 1.1rem;#}
+{#    }#}
+{##}
+{#    .form-guidelines ul {#}
+{#        margin: 5px 0;#}
+{#        padding-left: 20px;#}
+{#        color: #2e7d32;#}
+{#        font-size: 0.95rem;#}
+{#    }#}
+{##}
+{#    .form-guidelines li {#}
+{#        margin-bottom: 5px;#}
+{#    }#}
+{##}
+{#    /* Footer style */#}
+{#    .admin-footer {#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        color: white;#}
+{#        padding: 20px 0;#}
+{#        margin-top: 40px;#}
+{#        text-align: center;#}
+{#        border-radius: 0 0 10px 10px;#}
+{#    }#}
+{##}
+{#    .admin-footer p {#}
+{#        margin: 0;#}
+{#        opacity: 0.9;#}
+{#        font-size: 0.9rem;#}
+{#    }#}
+{##}
+{#    /* Back button styling */#}
+{#    .back-button {#}
+{#        position: absolute;#}
+{#        left: 20px;#}
+{#        top: 20px;#}
+{#        background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#        color: white;#}
+{#        border: none;#}
+{#        padding: 10px 20px;#}
+{#        border-radius: 5px;#}
+{#        text-decoration: none;#}
+{#        display: inline-flex;#}
+{#        align-items: center;#}
+{#        transition: all 0.3s ease;#}
+{#        font-family: 'Open Sans', sans-serif;#}
+{#        font-size: 0.9rem;#}
+{#        z-index: 1000;#}
+{#        box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);#}
+{#    }#}
+{##}
+{#    .back-button:hover {#}
+{#        background: linear-gradient(45deg, #1976d2, #1565c0);#}
+{#        color: white;#}
+{#        text-decoration: none;#}
+{#        transform: translateY(-1px);#}
+{#        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);#}
+{#    }#}
+{##}
+{#    @media (max-width: 768px) {#}
+{#        .form-body {#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        .form-header {#}
+{#            padding: 20px;#}
+{#        }#}
+{##}
+{#        .form-header h2 {#}
+{#            font-size: 24px;#}
+{#        }#}
+{##}
+{#        table {#}
+{#            display: block;#}
+{#        }#}
+{##}
+{#        table tr {#}
+{#            display: block;#}
+{#            margin-bottom: 10px;#}
+{#            border: 1px solid #bbdefb;#}
+{#            border-radius: 5px;#}
+{#        }#}
+{##}
+{#        table tr th,#}
+{#        table tr td {#}
+{#            display: block;#}
+{#            width: 100%;#}
+{#            box-sizing: border-box;#}
+{#            border: none;#}
+{#        }#}
+{##}
+{#        table tr th {#}
+{#            background: linear-gradient(45deg, #2196f3, #1976d2);#}
+{#            color: white;#}
+{#            border-bottom: 2px solid #1976d2;#}
+{#            border-radius: 5px 5px 0 0;#}
+{#        }#}
+{##}
+{#        table tr td {#}
+{#            border-top: 1px solid #bbdefb;#}
+{#            border-radius: 0 0 5px 5px;#}
+{#        }#}
+{##}
+{#        table tr:first-child th {#}
+{#            border-radius: 5px 5px 0 0;#}
+{#        }#}
+{#    }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#    <!-- Back Button -->#}
+{#    <a href="javascript:history.back()" class="back-button">#}
+{#        <i class="fa fa-arrow-left mr-2"></i> Back#}
+{#    </a>#}
+{##}
+{#    <div class="container">#}
+{#        <div class="logo">#}
+{#            <h1><i class="fa fa-book-reader mr-3"></i>DIGITAL WAVES</h1>#}
+{#        </div>#}
+{##}
+{#        <div class="form-container">#}
+{#            <div class="form-header">#}
+{#                <h2><i class="fa fa-plus-circle mr-2"></i>ADD NEW SUBJECT</h2>#}
+{#            </div>#}
+{##}
+{#            <div class="form-body">#}
+{#                <!-- Subject Creation Guidelines -->#}
+{#                <div class="form-guidelines">#}
+{#                    <h5><i class="fa fa-lightbulb mr-2"></i>Subject Creation Guidelines:</h5>#}
+{#                    <ul>#}
+{#                        <li>Subject name should be clear and descriptive</li>#}
+{#                        <li>Subject code should follow your institution's naming convention</li>#}
+{#                        <li>Credit and max marks should be numeric values</li>#}
+{#                        <li>Semester should be a valid semester number</li>#}
+{#                        <li>Provide a comprehensive description of the subject</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{##}
+{#                <!-- Subject Information Summary -->#}
+{#                <div class="subject-info">#}
+{#                    <h5><i class="fa fa-info-circle mr-2"></i>Subject Information:</h5>#}
+{#                    <p><strong>Creation Date:</strong> <span id="currentDate"></span></p>#}
+{#                    <p><strong>Institution:</strong> Digital Waves Education</p>#}
+{#                    <p><strong>System:</strong> Secure Document Protection</p>#}
+{#                </div>#}
+{##}
+{#                <!-- Your Original Code Starts Here - No changes made -->#}
+{#                <form id="form1" name="form1" method="post" action="/add_subject_post/{{ id }}">#}
+{#                  <table width="376" height="231" border="1">#}
+{#                    <tr>#}
+{#                      <th colspan="2" scope="row">ADD SUBJECT</th>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <th width="92" scope="row">NAME</th>#}
+{#                      <td width="130"><label for="textfield"></label>#}
+{#                      <input type="text" name="textfield" id="textfield" class="form-control" placeholder="Enter subject name" required minlength="3" maxlength="100" /></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <th scope="row">DISCRIPTION</th>#}
+{#                      <td><label for="textarea"></label>#}
+{#                      <textarea name="textarea" id="textarea" cols="45" rows="5" class="form-control" placeholder="Enter detailed subject description" required minlength="10" maxlength="500"></textarea>#}
+{#                      <div class="char-count" id="charCount">0/500 characters</div>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                          <tr>#}
+{#                      <th width="92" scope="row">SEMESTER</th>#}
+{#                      <td width="130"><label for="textfield"></label>#}
+{#                      <input type="text" name="semester" id="semester" class="form-control" placeholder="Enter semester number" required pattern="[0-9]+" title="Please enter a valid semester number" /></td>#}
+{#                    </tr>#}
+{#                        <tr>#}
+{#                      <th width="92" scope="row">CODE</th>#}
+{#                      <td width="130"><label for="textfield"></label>#}
+{#                      <input type="text" name="code" id="code" class="form-control" placeholder="Enter subject code" required minlength="2" maxlength="20" /></td>#}
+{#                    </tr>#}
+{#                       <tr>#}
+{#                      <th width="92" scope="row">CREDIT</th>#}
+{#                      <td width="130"><label for="textfield"></label>#}
+{#                      <input type="text" name="credit" id="credit" class="form-control" placeholder="Enter credit value" required pattern="[0-9]+(\.[0-9]+)?" title="Please enter a valid credit value" /></td>#}
+{#                    </tr>#}
+{#                               <tr>#}
+{#                      <th width="92" scope="row">MAX_MARK</th>#}
+{#                      <td width="130"><label for="textfield"></label>#}
+{#                      <input type="text" name="max_mark" id="max_mark" class="form-control" placeholder="Enter maximum marks" required pattern="[0-9]+" title="Please enter a valid maximum mark" /></td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="ADD" class="btn-submit" /></th>#}
+{#                    </tr>#}
+{#                  </table>#}
+{#                </form>#}
+{#                <!-- Your Original Code Ends Here -->#}
+{##}
+{#                <!-- Additional Information -->#}
+{#                <div class="subject-info" style="border-left-color: #4caf50; margin-top: 20px; background: linear-gradient(to right, #e8f5e9, #f1f8e9);">#}
+{#                    <h5><i class="fa fa-shield-alt mr-2"></i>Security Information:</h5>#}
+{#                    <ul style="margin: 5px 0; padding-left: 20px; color: #2e7d32; font-size: 0.95rem;">#}
+{#                        <li>All subject data is securely stored and encrypted</li>#}
+{#                        <li>Subject documents will be protected with QR code security</li>#}
+{#                        <li>Access to subject materials is controlled and monitored</li>#}
+{#                        <li>Regular security audits are performed on all academic data</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{##}
+{#                <div class="text-center">#}
+{#                    <a href="javascript:history.back()" class="back-link">#}
+{#                        <i class="fa fa-arrow-left mr-2"></i>Back to Previous Page#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{#            <div class="admin-footer">#}
+{#                <div class="container">#}
+{#                    <p><i class="fa fa-copyright mr-2"></i>Admin Panel - Academic Management System</p>#}
+{#                    <p class="small">Digital Waves Education • Secure Document Protection</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Add Subject - Digital Waves</title>
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    /* --- Styles unchanged from original code --- */
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    }
+
+    .container { max-width: 800px; width: 100%; }
+
+    .form-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(33, 150, 243, 0.15);
+        overflow: hidden;
+        animation: fadeIn 0.5s ease-out;
+        border: 1px solid #e1f5fe;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-header {
+        background: linear-gradient(45deg, #2196f3, #1976d2);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        position: relative;
+    }
+
+    .form-header h2 {
+        font-family: 'Jost', sans-serif;
+        font-weight: 700;
+        margin: 0;
+        font-size: 32px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-body { padding: 40px; margin-top: 10px; background: #fafdff; }
+
+    .form-group label { font-family: 'Jost', sans-serif; font-weight: 600; color: #1565c0; margin-bottom: 8px; font-size: 16px; }
+
+    .form-control {
+        border: 2px solid #bbdefb;
+        border-radius: 5px;
+        padding: 12px 15px;
+        font-size: 16px;
+        transition: all 0.3s;
+        background-color: #f1f8ff;
+        font-family: 'Open Sans', sans-serif;
+        color: #1565c0;
+    }
+
+    .form-control:focus {
+        border-color: #2196f3;
+        box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
+        background-color: white;
+    }
+
+    textarea.form-control { min-height: 120px; resize: vertical; }
+
+    .btn-submit {
+        background: linear-gradient(45deg, #2196f3, #1976d2);
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 100%;
+        font-family: 'Jost', sans-serif;
+        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2);
+    }
+
+    .btn-submit:hover {
+        background: linear-gradient(45deg, #1976d2, #1565c0);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+    }
+
+    .btn-submit:active { transform: translateY(0); }
+
+    .back-link { display: inline-block; margin-top: 20px; color: #2196f3; text-decoration: none; font-weight: 600; transition: all 0.3s; font-family: 'Open Sans', sans-serif; }
+
+    .back-link:hover { color: #1565c0; text-decoration: none; }
+
+    .logo { text-align: center; margin-bottom: 30px; }
+
+    .logo h1 { font-family: 'Jost', sans-serif; color: #2196f3; font-weight: 700; font-size: 36px; text-shadow: 0 2px 4px rgba(33, 150, 243, 0.1); }
+
+    .logo i { color: #1976d2; }
+
+    table {
+        width: 100%;
+        margin: 0;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+        border: 1px solid #bbdefb;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    table tr:first-child th {
+        background: linear-gradient(45deg, #2196f3, #1976d2);
+        color: white;
+        font-family: 'Jost', sans-serif;
+        font-weight: 600;
+        padding: 25px 20px;
+        text-align: center;
+        vertical-align: middle;
+        border: none;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    table tr th { background-color: #e3f2fd; color: #1565c0; font-family: 'Jost', sans-serif; font-weight: 600; padding: 20px; text-align: left; vertical-align: middle; border: 1px solid #bbdefb; border-right: none; width: 30%; font-size: 1.1rem; }
+
+    table tr td { padding: 20px; text-align: left; vertical-align: middle; border: 1px solid #bbdefb; border-left: none; width: 70%; background-color: white; }
+
+    input[type="text"], textarea { width: 100%; padding: 12px 15px; border: 2px solid #bbdefb; border-radius: 5px; font-family: 'Open Sans', sans-serif; font-size: 1rem; transition: all 0.3s ease; box-sizing: border-box; background-color: #f1f8ff; color: #1565c0; }
+
+    input[type="text"]:focus, textarea:focus { border-color: #2196f3; box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25); outline: none; background-color: white; }
+
+    textarea { min-height: 120px; resize: vertical; font-family: 'Open Sans', sans-serif; }
+
+    input[type="submit"] { background: linear-gradient(45deg, #2196f3, #1976d2); border: none; color: white; padding: 12px 30px; font-size: 18px; font-weight: 600; border-radius: 5px; cursor: pointer; transition: all 0.3s; width: 100%; font-family: 'Jost', sans-serif; box-shadow: 0 4px 15px rgba(33, 150, 243, 0.2); }
+
+    input[type="submit"]:hover { background: linear-gradient(45deg, #1976d2, #1565c0); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3); }
+
+    input[type="submit"]:active { transform: translateY(0); }
+
+    table tr:hover th, table tr:hover td { background-color: #e8f4ff; transition: background-color 0.3s ease; }
+
+    table tr:last-child th { background-color: #e3f2fd; text-align: center; padding: 30px 20px; border-bottom: 1px solid #bbdefb; }
+
+    .subject-info { background: linear-gradient(to right, #e3f2fd, #f1f8ff); padding: 20px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #2196f3; box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1); }
+
+    .subject-info h5 { color: #1565c0; font-family: 'Jost', sans-serif; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .subject-info p { margin: 5px 0; color: #1565c0; font-size: 0.95rem; }
+
+    .char-count { font-size: 0.8rem; color: #64b5f6; text-align: right; margin-top: 5px; }
+
+    .form-guidelines { background: linear-gradient(to right, #e8f5e9, #f1f8e9); padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #4caf50; box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1); }
+
+    .form-guidelines h5 { color: #2e7d32; font-family: 'Jost', sans-serif; margin-bottom: 10px; font-size: 1.1rem; }
+
+    .form-guidelines ul { margin: 5px 0; padding-left: 20px; color: #2e7d32; font-size: 0.95rem; }
+
+    .form-guidelines li { margin-bottom: 5px; }
+
+    .admin-footer { background: linear-gradient(45deg, #2196f3, #1976d2); color: white; padding: 20px 0; margin-top: 40px; text-align: center; border-radius: 0 0 10px 10px; }
+
+    .admin-footer p { margin: 0; opacity: 0.9; font-size: 0.9rem; }
+
+    .back-button { position: absolute; left: 20px; top: 20px; background: linear-gradient(45deg, #2196f3, #1976d2); color: white; border: none; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.3s ease; font-family: 'Open Sans', sans-serif; font-size: 0.9rem; z-index: 1000; box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2); }
+
+    .back-button:hover { background: linear-gradient(45deg, #1976d2, #1565c0); color: white; text-decoration: none; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); }
+
+    @media (max-width: 768px) {
+        .form-body { padding: 20px; }
+        .form-header { padding: 20px; }
+        .form-header h2 { font-size: 24px; }
+        table { display: block; }
+        table tr { display: block; margin-bottom: 10px; border: 1px solid #bbdefb; border-radius: 5px; }
+        table tr th, table tr td { display: block; width: 100%; box-sizing: border-box; border: none; }
+        table tr th { background: linear-gradient(45deg, #2196f3, #1976d2); color: white; border-bottom: 2px solid #1976d2; border-radius: 5px 5px 0 0; }
+        table tr td { border-top: 1px solid #bbdefb; border-radius: 0 0 5px 5px; }
+        table tr:first-child th { border-radius: 5px 5px 0 0; }
+    }
+</style>
+</head>
+
+<body>
+    <!-- Back Button -->
+    <a href="javascript:history.back()" class="back-button">
+        <i class="fa fa-arrow-left mr-2"></i> Back
+    </a>
+
+    <div class="container">
+        <div class="logo">
+            <h1><i class="fa fa-book-reader mr-3"></i>DIGITAL WAVES</h1>
+        </div>
+
+        <div class="form-container">
+            <div class="form-header">
+                <h2><i class="fa fa-plus-circle mr-2"></i>ADD NEW SUBJECT</h2>
+            </div>
+
+            <div class="form-body">
+                <!-- Subject Creation Guidelines -->
+                <div class="form-guidelines">
+                    <h5><i class="fa fa-lightbulb mr-2"></i>Subject Creation Guidelines:</h5>
+                    <ul>
+                        <li>Subject name should be clear and descriptive</li>
+                        <li>Subject code should follow your institution's naming convention</li>
+                        <li>Credit and max marks should be numeric values</li>
+                        <li>Semester should be a valid semester number</li>
+                        <li>Provide a comprehensive description of the subject</li>
+                    </ul>
+                </div>
+
+                <!-- Subject Information Summary -->
+                <div class="subject-info">
+                    <h5><i class="fa fa-info-circle mr-2"></i>Subject Information:</h5>
+                    <p><strong>Creation Date:</strong> <span id="currentDate"></span></p>
+                    <p><strong>Institution:</strong> Digital Waves Education</p>
+                    <p><strong>System:</strong> Secure Document Protection</p>
+                </div>
+
+                <!-- Form with validations -->
+                <form id="form1" name="form1" method="post" action="/add_subject_post/{{ id }}">
+                  <table width="376" height="231" border="1">
+                    <tr>
+                      <th colspan="2" scope="row">ADD SUBJECT</th>
+                    </tr>
+                    <tr>
+                      <th width="92" scope="row">NAME</th>
+                      <td width="130">
+                        <input type="text" name="textfield" id="textfield" class="form-control" placeholder="Enter subject name"
+                        required minlength="3" maxlength="100" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">DESCRIPTION</th>
+                      <td>
+                        <textarea name="textarea" id="textarea" cols="45" rows="5" class="form-control"
+                        placeholder="Enter detailed subject description" required minlength="10" maxlength="500"></textarea>
+                        <div class="char-count" id="charCount">0/500 characters</div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th width="92" scope="row">SEMESTER</th>
+                      <td width="130">
+                        <input type="text" name="semester" id="semester" class="form-control" placeholder="Enter semester number"
+                        required pattern="[1-6]" title="Please enter a valid semester number between 1 and 6" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th width="92" scope="row">CODE</th>
+                      <td width="130">
+                        <input type="text" name="code" id="code" class="form-control" placeholder="Enter subject code"
+                        required pattern="[0-9]+" title="Please enter numbers only for code" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th width="92" scope="row">CREDIT</th>
+                      <td width="130">
+                        <input type="text" name="credit" id="credit" class="form-control" placeholder="Enter credit value"
+                        required pattern="^\d+(\.\d+)?$" title="Please enter a valid numeric credit (e.g., 3 or 3.5)" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th width="92" scope="row">MAX_MARK</th>
+                      <td width="130">
+                        <input type="text" name="max_mark" id="max_mark" class="form-control" placeholder="Enter maximum marks"
+                        required pattern="[0-9]+" title="Please enter numbers only for maximum marks" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th colspan="2" scope="row">
+                        <input type="submit" name="button" id="button" value="ADD" class="btn-submit" />
+                      </th>
+                    </tr>
+                  </table>
+                </form>
+
+                <!-- Security Information -->
+                <div class="subject-info" style="border-left-color: #4caf50; margin-top: 20px; background: linear-gradient(to right, #e8f5e9, #f1f8e9);">
+                    <h5><i class="fa fa-shield-alt mr-2"></i>Security Information:</h5>
+                    <ul style="margin: 5px 0; padding-left: 20px; color: #2e7d32; font-size: 0.95rem;">
+                        <li>All subject data is securely stored and encrypted</li>
+                        <li>Subject documents will be protected with QR code security</li>
+                        <li>Access to subject materials is controlled and monitored</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="admin-footer">
+            <p>&copy; 2026 DIGITAL WAVES. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript: Character count for description -->
+    <script>
+        const textarea = document.getElementById('textarea');
+        const charCount = document.getElementById('charCount');
+        textarea.addEventListener('input', () => {
+            charCount.textContent = `${textarea.value.length}/500 characters`;
+        });
+
+        // Set current date
+        const dateSpan = document.getElementById('currentDate');
+        const today = new Date();
+        dateSpan.textContent = today.toLocaleDateString();
+    </script>
+</body>
+</html>

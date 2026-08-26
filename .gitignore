@@ -1,0 +1,26 @@
+__pycache__/
+*.py[cod]
+
+venv/
+env/
+.venv/
+
+.env
+.env.*
+
+.idea/
+.vscode/
+
+*.log
+staticfiles/
+
+db.sqlite3
+
+.DS_Store
+Thumbs.db
+
+# Face images / biometric data
+APP/static/faces/
+
+# Uploaded certificates / personal documents
+media/certificates/

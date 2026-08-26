@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Student</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<style type="text/css">
+/* Blue Theme Styles - Override Bootstrap and match previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+form {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 1400px;
+    border: 2px solid #2c3e50;
+    padding: 20px;
+}
+
+/* Search Container Styling */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+/* Dropdown Styling */
+.custom-select {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: 2px solid #2c82c9;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 15px;
+    min-width: 200px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
+    transition: all 0.3s ease;
+}
+
+.custom-select:hover {
+    background: linear-gradient(135deg, #2980b9, #2573a7);
+    border-color: #3498db;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.custom-select:focus {
+    border-color: #1a5276;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.custom-select option {
+    background: white;
+    color: #2c3e50;
+    font-weight: normal;
+    padding: 10px;
+}
+
+/* Search Button Styling */
+.search-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.search-btn:hover {
+    background: linear-gradient(135deg, #27ae60, #219653);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(46, 204, 113, 0.3);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    margin-bottom: 0;
+}
+
+/* First header (STUDENT title) - Different style */
+.table-dark th[colspan="13"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Second header row - Different style */
+tr.table-dark:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0;
+    font-size: 13px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Internal Link Button Styling */
+.internal-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(155, 89, 182, 0.3);
+    border: 2px solid #8e44ad;
+    margin: 5px 0;
+    width: 150px;
+}
+
+.internal-link:hover {
+    background: linear-gradient(135deg, #8e44ad, #7d3c98);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(155, 89, 182, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.internal-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(155, 89, 182, 0.3);
+}
+
+/* Column widths for 13 columns */
+td:nth-child(1) { /* Sl No */
+    width: 5%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* College */
+    width: 12%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* Course */
+    width: 10%;
+    font-weight: 600;
+}
+
+td:nth-child(4) { /* Name */
+    width: 12%;
+    font-weight: 600;
+}
+
+td:nth-child(5) { /* Email */
+    width: 15%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+td:nth-child(6) { /* Phone */
+    width: 10%;
+}
+
+td:nth-child(7) { /* Place */
+    width: 8%;
+}
+
+td:nth-child(8) { /* Post */
+    width: 8%;
+}
+
+td:nth-child(9) { /* Pin */
+    width: 7%;
+}
+
+td:nth-child(10) { /* Dob */
+    width: 8%;
+}
+
+td:nth-child(11) { /* Joining Year */
+    width: 8%;
+}
+
+td:nth-child(12) { /* Roll No */
+    width: 8%;
+    font-weight: 600;
+}
+
+td:nth-child(13) { /* Internal */
+    width: 9%;
+    background: #f8f9fa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1450px) {
+    form {
+        width: 95%;
+        overflow-x: auto;
+    }
+
+    table {
+        display: block;
+        min-width: 1350px;
+    }
+
+    .table-dark th[colspan="13"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    td, th {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .search-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .custom-select {
+        min-width: 180px;
+        margin-bottom: 10px;
+    }
+
+    .internal-link {
+        padding: 8px 15px;
+        font-size: 12px;
+        width: 130px;
+    }
+}
+
+/* Align center for table cells */
+tr[align="center"] td {
+    text-align: center;
+}
+
+/* Fix for extra <td> tag in header */
+tr.table-dark:nth-child(2) td:last-child {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+/* Remove any existing button styles */
+.btn, .btn-sm {
+    border: none;
+    background: none;
+    text-decoration: none;
+    color: inherit;
+}
+</style>
+</head>
+
+<body>
+<form action="/view_student_post/{{ id }}" method="post" enctype="multipart/form-data">
+    <!-- Search Container -->
+    <div class="search-container">
+        <select name="select" class="custom-select">
+            {% for i in data2 %}
+                <option value="{{ i.id }}">{{ i.COURSE.title }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Search" class="search-btn" />
+    </div>
+
+    <table border="1" class="table table-hover table-secondarydesam l">
+        <tr align="center" class="table-dark">
+            <th colspan="13" scope="col">STUDENT</th>
+        </tr>
+        <tr align="center" class="table-dark">
+            <td>Sl No</td>
+            <td>Course</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Place</td>
+            <td>Post</td>
+            <td>Pin</td>
+            <td>Dob</td>
+            <td>Joining Year</td>
+            <td>Roll No</td>
+            <td>Internal</td>
+        </tr>
+        {% for i in data %}
+        <tr align="center">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.OFFERED_LIST.COURSE.title }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.phone }}</td>
+            <td>{{ i.place }}</td>
+            <td>{{ i.post }}</td>
+            <td>{{ i.pin }}</td>
+            <td>{{ i.date_of_birth }}</td>
+            <td>{{ i.joining_year }}</td>
+            <td>{{ i.roll_number }}</td>
+            <td align="center">
+                <a href="/view_internals/{{ i.id }}" class="internal-link">View Internals</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
+</html>

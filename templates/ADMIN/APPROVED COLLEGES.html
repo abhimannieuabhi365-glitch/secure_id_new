@@ -1,0 +1,237 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="798" height="359" border="1">#}
+{#    <tr>#}
+{#      <th colspan="8" scope="row">VERIFY COLLEGES</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th scope="row">Slno</th>#}
+{#      <td>Name</td>#}
+{#      <td>E-mail</td>#}
+{#      <td>Phone</td>#}
+{#      <td>Place</td>#}
+{#      <td>Post</td>#}
+{#      <td>Pin</td>#}
+{#    </tr>#}
+{#{% for i in data %}#}
+{#      <tr>#}
+{#      <th scope="row">{{ forloop.counter }}</th>#}
+{#      <td>{{ i.name }}</td>#}
+{#      <td>{{ i.email }}</td>#}
+{#      <td>{{ i.phone }}</td>#}
+{#      <td>{{ i.place }}</td>#}
+{#      <td>{{ i.post }}</td>#}
+{#      <td>{{ i.pin }}</td>#}
+{##}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+{##}
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Verify Colleges</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 800px;
+    border: 2px solid #2c3e50;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+    min-width: 780px;
+}
+
+/* First header (title) - Different style */
+th[colspan="8"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Second header row - Different style */
+tr:nth-child(2) th[scope="row"],
+tr:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Column styling for better readability */
+td:nth-child(1) { /* Slno */
+    width: 8%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* Name */
+    width: 20%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* E-mail */
+    width: 22%;
+    text-align: left;
+    padding-left: 15px;
+}
+
+td:nth-child(4) { /* Phone */
+    width: 12%;
+}
+
+td:nth-child(5) { /* Place */
+    width: 12%;
+}
+
+td:nth-child(6) { /* Post */
+    width: 12%;
+}
+
+td:nth-child(7) { /* Pin */
+    width: 14%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        min-width: 780px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    th[colspan="8"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+/* Style for links - matching previous button style */
+a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 3px 0;
+    font-weight: 600;
+    font-size: 13px;
+    width: 90px;
+    text-align: center;
+}
+    /* Accept link - Green */
+a[href*="view_student"] {
+    color: white;
+    background: linear-gradient(135deg, #27ae60, #229954);
+    border: 2px solid #27ae60;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="798" height="359" border="1">
+    <tr>
+      <th colspan="8" scope="row">VERIFY COLLEGES</th>
+    </tr>
+    <tr>
+      <th scope="row">Slno</th>
+      <td>Name</td>
+      <td>E-mail</td>
+      <td>Phone</td>
+      <td>Place</td>
+      <td>Post</td>
+      <td>Pin</td>
+        <td>Actions</td>
+    </tr>
+{% for i in data %}
+      <tr>
+      <td scope="row">{{ forloop.counter }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.place }}</td>
+      <td>{{ i.post }}</td>
+      <td>{{ i.pin }}</td>
+      <td><a href="/view_student/{{ i.id }}">View Students</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>

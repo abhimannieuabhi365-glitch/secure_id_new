@@ -1,0 +1,266 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="709" height="276" border="1">#}
+{#    <tr>#}
+{#      <th colspan="6" scope="col">INTERNAL MARK</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td width="153">slno</td>#}
+{#      <td width="151">STUDENT</td>#}
+{#      <td width="82">SUBJECT</td>#}
+{#      <td width="72">MARK</td>#}
+{#      <td width="71">&nbsp;</td>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#     <tr>#}
+{#      <td>{{ forloop.counter }}</td>#}
+{#      <td>{{ i.SUBJECT.name }}</td>#}
+{#      <td>{{ i.STUDENT.name }}</td>#}
+{#      <td>{{ i.internal_mark }}</td>#}
+{#      <td><p><a href="/edit_internal_mark/{{ i.id }}">EDIT</a></p>#}
+{#       <p><a href="/delete_internal_mark/{{ i.id }}">DELETE</a></p></td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Internal Mark</title>
+<style type="text/css">
+/* Blue Theme Styles - Same as previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 750px;
+    border: 2px solid #2c3e50;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+    min-width: 700px;
+}
+
+th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: center;
+}
+
+th[colspan="6"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+td {
+    padding: 12px 8px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 14px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:nth-child(even):hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Style for links - matching previous button style */
+a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin: 5px 0;
+    font-weight: 600;
+    font-size: 13px;
+    width: 80px;
+}
+
+a:first-child {
+    color: white;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: 2px solid #3498db;
+}
+
+a:first-child:hover {
+    background: linear-gradient(135deg, #2980b9, #1c5a7d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(41, 128, 185, 0.4);
+}
+
+a:nth-child(2) {
+    color: white;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border: 2px solid #e74c3c;
+}
+
+a:nth-child(2):hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Column styling for better readability */
+td:nth-child(1) { /* Slno */
+    width: 10%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* STUDENT */
+    width: 25%;
+    font-weight: 600;
+}
+
+td:nth-child(3) { /* SUBJECT */
+    width: 25%;
+    font-weight: 600;
+}
+
+td:nth-child(4) { /* MARK */
+    width: 15%;
+    font-weight: 600;
+    background: #ecf0f1;
+}
+
+td:nth-child(5) { /* Actions */
+    width: 25%;
+    background: #f8f9fa;
+}
+
+/* Header row cells */
+tr:nth-child(2) td {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+    color: white;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    #form1 {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    th[colspan="6"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    a {
+        padding: 6px 10px;
+        font-size: 12px;
+        width: 70px;
+    }
+}
+
+/* Empty cell in header */
+tr:nth-child(2) td:last-child {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+/* Action cell styling */
+td:last-child p {
+    margin: 8px 0;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="709" height="276" border="1">
+    <tr>
+      <th colspan="6" scope="col">INTERNAL MARK</th>
+    </tr>
+    <tr>
+      <td width="153">slno</td>
+      <td width="151">STUDENT</td>
+      <td width="82">SUBJECT</td>
+      <td width="72">MARK</td>
+      <td width="71">&nbsp;</td>
+    </tr>
+      {% for i in data %}
+     <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.STUDENT.name }}</td>
+      <td>{{ i.SUBJECT.name }}</td>
+      <td>{{ i.internal_mark }}</td>
+      <td><p><a href="/edit_internal_mark/{{ i.id }}">EDIT</a></p>
+       <p><a href="/delete_internal_mark/{{ i.id }}">DELETE</a></p></td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>

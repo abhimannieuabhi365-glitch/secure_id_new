@@ -1,0 +1,249 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+{#<form id="form1" name="form1" method="post" action="">#}
+{#  <table width="711" height="364" border="1">#}
+{#    <tr>#}
+{#      <th colspan="4" scope="row">VIEW OWN COURSE</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <th width="124" scope="row">Slno#</th>#}
+{#      <td width="142">TITLE</td>#}
+{#      <td width="326">DESCRIPTION</td>#}
+{#      <td width="91">&nbsp;</td>#}
+{#    </tr>#}
+{#      {% for i in data %}#}
+{#    <tr>#}
+{#      <th scope="row">{{ forloop.counter }}</th>#}
+{#      <td>{{ i.COURSE.title }}</td>#}
+{#      <td>{{ i.COURSE.description }}</td>#}
+{#      <td>#}
+{#          <p><a href="/add_student/{{ i.id }}">Add Student</a><br>#}
+{#              <a href="/view_student_college/{{ i.id }}">View Student</a> #}
+{#      </td>#}
+{#    </tr>#}
+{#      {% endfor %}#}
+{#  </table>#}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>View Own Course</title>
+<style type="text/css">
+/* Blue Theme Styles - Consistent with previous pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#form1 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 750px;
+    border: 2px solid #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none !important;
+}
+
+th {
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #e0e0e0 !important;
+    text-align: center;
+}
+
+th[scope="row"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    padding: 15px;
+    text-align: center;
+}
+
+th[colspan="4"] {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: none !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+td {
+    padding: 15px;
+    border: 1px solid #e0e0e0 !important;
+    font-size: 16px;
+    color: #2c3e50;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td:first-child {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* Style for links */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin: 2px 0;
+}
+
+a:hover {
+    color: white;
+    background-color: #3498db;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Table row alternating effect */
+tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tr:nth-child(even):hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+tr:nth-child(even) th[scope="row"] {
+    background: linear-gradient(135deg, #2c82c9, #2573a7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+    #form1 {
+        width: 95%;
+        overflow-x: auto;
+    }
+
+    table {
+        display: block;
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 12px 8px;
+        font-size: 14px;
+    }
+
+    th[colspan="4"] {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+
+/* Specific column widths */
+td:nth-child(1) { /* Slno# */
+    width: 15%;
+    background: #ecf0f1;
+    font-weight: 600;
+}
+
+td:nth-child(2) { /* TITLE */
+    width: 20%;
+}
+
+td:nth-child(3) { /* DESCRIPTION */
+    width: 45%;
+    text-align: left;
+}
+
+td:nth-child(4) { /* Actions */
+    width: 20%;
+}
+
+/* Action links container */
+td:last-child {
+    background: #f8f9fa;
+    padding: 15px 10px;
+}
+
+/* Comment styling */
+.comment {
+    color: #95a5a6;
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 5px;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="711" height="364" border="1">
+    <tr>
+      <th colspan="5" scope="row">VIEW OWN COURSE</th>
+    </tr>
+    <tr>
+      <th width="124" scope="row">Slno#</th>
+      <td width="142">TITLE</td>
+      <td width="326">DESCRIPTION</td>
+      <td width="91">student</td>
+      <td width="91">internal mark</td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ i.COURSE.title }}</td>
+      <td>{{ i.COURSE.description }}</td>
+      <td>
+          <p><a href="/add_student/{{ i.id }}">Add Student</a><br>
+          </p></td>
+         <td>
+          <p><a href="/add_internal_mark/{{ i.id }}">Add</a><br>
+{#        <a href="/view_student_college/{{ i.id }}">View Student</a> #}
+      </td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>

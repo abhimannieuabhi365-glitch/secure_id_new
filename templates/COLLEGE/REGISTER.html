@@ -1,0 +1,638 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#    <style type="text/css">#}
+{##}
+{##gmap { width: 200px; height: 100px; border: double; }#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body onload="initialize()"><form action="/college_register_post" method="post" enctype="multipart/form-data">#}
+{#<table width="749" height="830" border="1">#}
+{#  <tr>#}
+{#    <th colspan="2" scope="row">COLLEGE REGISTRATION</th>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">NAME</th>#}
+{#    <td><label for="textfield2"></label>#}
+{#      <input type="text" name="textfield2" id="textfield2" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">E-MAIL</th>#}
+{#    <td><label for="textfield3"></label>#}
+{#      <input type="text" name="textfield3" id="textfield3" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PHONE</th>#}
+{#    <td><label for="textfield4"></label>#}
+{#      <input type="text" name="textfield4" id="textfield4" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PLACE</th>#}
+{#    <td><label for="textfield5"></label>#}
+{#      <input type="text" name="textfield5" id="textfield5" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">POST</th>#}
+{#    <td><label for="textfield6"></label>#}
+{#      <input type="text" name="textfield6" id="textfield6" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PIN</th>#}
+{#    <td><label for="textfield7"></label>#}
+{#      <input type="text" name="textfield7" id="textfield7" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PIC</th>#}
+{#    <td><label for="fileField"></label>#}
+{#      <input type="file" name="fileField" id="fileField" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">LATITUDE</th>#}
+{#    <td><label for="textfield8"></label><div id="gmap"></div>#}
+{#      <input type="text" name="textfield8" id="lt" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">LONGITUDE</th>#}
+{#    <td><label for="textfield9"></label>#}
+{#      <input type="text" name="textfield9" id="lg" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">PROOF</th>#}
+{#    <td><label for="fileField2"></label>#}
+{#      <input type="file" name="fileField2" id="fileField2" /></td>#}
+{#  </tr>#}
+{#   <tr>#}
+{#    <th scope="row">PASSWORD</th>#}
+{#    <td><label for="textfield10"></label>#}
+{#      <input type="text" name="textfield10" id="textfield10" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">CONFIRM PASSWORD</th>#}
+{#    <td><label for="textfield11"></label>#}
+{#      <input type="text" name="textfield11" id="textfield11" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th height="32" colspan="2" scope="row"><label for="textfield10"></label>#}
+{#      <input type="submit" name="button" id="button" value="REGISTER" /></th>#}
+{#    </tr>#}
+{#</table>#}
+{#</form>#}
+{##}
+{#</body>#}
+{##}
+{##}
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"></script>#}
+{#<script type="text/javascript">#}
+{#var map, marker;#}
+{##}
+{#function initialize() {#}
+{#    var myLatlng = new google.maps.LatLng(11.868536, 75.363197);#}
+{#    var myOptions = {#}
+{#        zoom: 7,#}
+{#        center: myLatlng,#}
+{#        mapTypeId: google.maps.MapTypeId.ROADMAP#}
+{#    }#}
+{#    map = new google.maps.Map(document.getElementById("gmap"), myOptions);#}
+{#    marker = new google.maps.Marker({#}
+{#        position: myLatlng,#}
+{#        map: map#}
+{#    });#}
+{##}
+{#    google.maps.event.addListener(map, "click", function(event) {#}
+{#        var clickLat = event.latLng.lat();#}
+{#        var clickLon = event.latLng.lng();#}
+{#        document.getElementById("lt").value = clickLat.toFixed(5);#}
+{#        document.getElementById("lg").value = clickLon.toFixed(5);#}
+{#        marker.setPosition(new google.maps.LatLng(clickLat, clickLon));#}
+{#    });#}
+{##}
+{#    GetMylocation();#}
+{#}#}
+{##}
+{#function GetMylocation() {#}
+{#    if (navigator.geolocation) {#}
+{#        navigator.geolocation.getCurrentPosition(showPosition);#}
+{#    } else {#}
+{#        alert("Geolocation is not supported by this browser.");#}
+{#    }#}
+{#}#}
+{##}
+{#function showPosition(position) {#}
+{#    var lat = position.coords.latitude;#}
+{#    var lon = position.coords.longitude;#}
+{#    document.getElementById("lt").value = lat;#}
+{#    document.getElementById("lg").value = lon;#}
+{##}
+{#    var myLatlng = new google.maps.LatLng(lat, lon);#}
+{#    map.setCenter(myLatlng);#}
+{#    map.setZoom(14);#}
+{#    marker.setPosition(myLatlng);#}
+{#}#}
+{#</script>#}
+{#</html>#}
+
+
+{##}
+{##}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"#}
+{#"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{##}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>College Registration</title>#}
+{##}
+{#<style type="text/css">#}
+{#body {#}
+{#    background-color: #eaf3ff;#}
+{#    font-family: Arial, Helvetica, sans-serif;#}
+{#}#}
+{##}
+{#table {#}
+{#    margin: 30px auto;#}
+{#    width: 750px;#}
+{#    background: #ffffff;#}
+{#    border-collapse: collapse;#}
+{#    box-shadow: 0 0 15px rgba(0,0,0,0.2);#}
+{#}#}
+{##}
+{#th {#}
+{#    background-color: #0b5ed7;#}
+{#    color: white;#}
+{#    padding: 10px;#}
+{#    text-align: left;#}
+{#}#}
+{##}
+{#th[colspan="2"] {#}
+{#    text-align: center;#}
+{#    font-size: 22px;#}
+{#}#}
+{##}
+{#td {#}
+{#    padding: 10px;#}
+{#}#}
+{##}
+{#input[type="text"],#}
+{#input[type="file"] {#}
+{#    width: 95%;#}
+{#    padding: 8px;#}
+{#    border: 1px solid #9ec5fe;#}
+{#    border-radius: 4px;#}
+{#}#}
+{##}
+{#input:focus {#}
+{#    outline: none;#}
+{#    border-color: #0b5ed7;#}
+{#}#}
+{##}
+{##gmap {#}
+{#    width: 100%;#}
+{#    height: 150px;#}
+{#    border: 2px solid #0b5ed7;#}
+{#    margin-bottom: 5px;#}
+{#}#}
+{##}
+{#input[type="submit"] {#}
+{#    background-color: #0b5ed7;#}
+{#    color: white;#}
+{#    border: none;#}
+{#    padding: 10px 25px;#}
+{#    font-size: 16px;#}
+{#    border-radius: 5px;#}
+{#    cursor: pointer;#}
+{#}#}
+{##}
+{#input[type="submit"]:hover {#}
+{#    background-color: #084298;#}
+{#}#}
+{#</style>#}
+{#</head>#}
+{##}
+{#<body onload="initialize()">#}
+{##}
+{#<form action="/college_register_post" method="post"#}
+{#enctype="multipart/form-data" onsubmit="return validateForm();">#}
+{##}
+{#<table border="1">#}
+{#<tr>#}
+{#    <th colspan="2">COLLEGE REGISTRATION</th>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>NAME</th>#}
+{#    <td><input type="text" name="textfield2" id="textfield2" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>E-MAIL</th>#}
+{#    <td><input type="text" name="textfield3" id="textfield3" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PHONE</th>#}
+{#    <td><input type="text" name="textfield4" id="textfield4" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PLACE</th>#}
+{#    <td><input type="text" name="textfield5" id="textfield5" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>POST</th>#}
+{#    <td><input type="text" name="textfield6" id="textfield6" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PIN</th>#}
+{#    <td><input type="text" name="textfield7" id="textfield7" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PIC</th>#}
+{#    <td><input type="file" name="fileField" id="fileField" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>LATITUDE</th>#}
+{#    <td>#}
+{#        <div id="gmap"></div>#}
+{#        <input type="text" name="textfield8" id="lt" readonly />#}
+{#    </td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>LONGITUDE</th>#}
+{#    <td><input type="text" name="textfield9" id="lg" readonly /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PROOF</th>#}
+{#    <td><input type="file" name="fileField2" id="fileField2" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>PASSWORD</th>#}
+{#    <td><input type="text" name="textfield10" id="textfield10" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th>CONFIRM PASSWORD</th>#}
+{#    <td><input type="text" name="textfield11" id="textfield11" /></td>#}
+{#</tr>#}
+{##}
+{#<tr>#}
+{#    <th colspan="2" style="text-align:center;">#}
+{#        <input type="submit" name="button" id="button" value="REGISTER" />#}
+{#    </th>#}
+{#</tr>#}
+{#</table>#}
+{##}
+{#</form>#}
+{##}
+{#<!-- GOOGLE MAP -->#}
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"></script>#}
+{##}
+{#<script type="text/javascript">#}
+{#var map, marker;#}
+{##}
+{#function initialize() {#}
+{#    var myLatlng = new google.maps.LatLng(11.868536, 75.363197);#}
+{#    var myOptions = {#}
+{#        zoom: 7,#}
+{#        center: myLatlng,#}
+{#        mapTypeId: google.maps.MapTypeId.ROADMAP#}
+{#    };#}
+{##}
+{#    map = new google.maps.Map(document.getElementById("gmap"), myOptions);#}
+{##}
+{#    marker = new google.maps.Marker({#}
+{#        position: myLatlng,#}
+{#        map: map#}
+{#    });#}
+{##}
+{#    google.maps.event.addListener(map, "click", function(event) {#}
+{#        document.getElementById("lt").value = event.latLng.lat().toFixed(5);#}
+{#        document.getElementById("lg").value = event.latLng.lng().toFixed(5);#}
+{#        marker.setPosition(event.latLng);#}
+{#    });#}
+{##}
+{#    GetMylocation();#}
+{#}#}
+{##}
+{#function GetMylocation() {#}
+{#    if (navigator.geolocation) {#}
+{#        navigator.geolocation.getCurrentPosition(showPosition);#}
+{#    }#}
+{#}#}
+{##}
+{#function showPosition(position) {#}
+{#    var lat = position.coords.latitude;#}
+{#    var lon = position.coords.longitude;#}
+{##}
+{#    document.getElementById("lt").value = lat.toFixed(5);#}
+{#    document.getElementById("lg").value = lon.toFixed(5);#}
+{##}
+{#    var myLatlng = new google.maps.LatLng(lat, lon);#}
+{#    map.setCenter(myLatlng);#}
+{#    map.setZoom(14);#}
+{#    marker.setPosition(myLatlng);#}
+{#}#}
+{##}
+{#/* VALIDATION */#}
+{#function validateForm() {#}
+{##}
+{#    if (document.getElementById("textfield2").value == "") {#}
+{#        alert("Enter College Name");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    var email = document.getElementById("textfield3").value;#}
+{#    var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;#}
+{#    if (!email.match(emailPattern)) {#}
+{#        alert("Enter valid Email");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    var phone = document.getElementById("textfield4").value;#}
+{#    if (!/^\d{10}$/.test(phone)) {#}
+{#        alert("Enter valid 10 digit phone number");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    if (document.getElementById("textfield5").value == "") {#}
+{#        alert("Enter Place");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    if (document.getElementById("textfield6").value == "") {#}
+{#        alert("Enter Post");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    var pin = document.getElementById("textfield7").value;#}
+{#    if (!/^\d{6}$/.test(pin)) {#}
+{#        alert("Enter valid 6 digit PIN");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    if (document.getElementById("fileField").value == "") {#}
+{#        alert("Upload Picture");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    if (document.getElementById("fileField2").value == "") {#}
+{#        alert("Upload Proof");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    var pass = document.getElementById("textfield10").value;#}
+{#    var cpass = document.getElementById("textfield11").value;#}
+{##}
+{#    if (pass.length < 6) {#}
+{#        alert("Password must be at least 6 characters");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    if (pass != cpass) {#}
+{#        alert("Password mismatch");#}
+{#        return false;#}
+{#    }#}
+{##}
+{#    return true;#}
+{#}#}
+{#</script>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>College Registration</title>
+
+<style type="text/css">
+body {
+    background-color: #eaf3ff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    margin: 30px auto;
+    width: 750px;
+    background: #ffffff;
+    border-collapse: collapse;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+th {
+    background-color: #0b5ed7;
+    color: white;
+    padding: 10px;
+}
+
+th[colspan="2"] {
+    text-align: center;
+    font-size: 22px;
+}
+
+td {
+    padding: 10px;
+}
+
+input[type="text"],
+input[type="file"],
+input[type="password"] {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #9ec5fe;
+    border-radius: 4px;
+}
+
+#gmap {
+    width: 100%;
+    height: 150px;
+    border: 2px solid #0b5ed7;
+}
+
+input[type="submit"] {
+    background-color: #0b5ed7;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body onload="initialize()">
+
+<form action="/college_register_post" method="post" enctype="multipart/form-data">
+
+<table border="1">
+<tr>
+    <th colspan="2">COLLEGE REGISTRATION</th>
+</tr>
+
+<tr>
+    <th>NAME</th>
+    <td>
+        <input type="text" name="name"
+        required
+        pattern="[A-Za-z ]+"
+        title="Only letters allowed" />
+    </td>
+</tr>
+
+<tr>
+    <th>E-MAIL</th>
+    <td>
+        <input type="email" name="email" required />
+    </td>
+</tr>
+
+<tr>
+    <th>PHONE</th>
+    <td>
+        <input type="text" name="phone"
+        required
+        pattern="[0-9]{10}"
+        maxlength="10"
+        title="Enter 10 digit mobile number"
+        oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+    </td>
+</tr>
+
+<tr>
+    <th>PLACE</th>
+    <td>
+        <input type="text" name="place"
+        required
+        pattern="[A-Za-z ]+"
+        title="Only letters allowed" />
+    </td>
+</tr>
+
+<tr>
+    <th>POST</th>
+    <td>
+        <input type="text" name="post"
+        required
+        pattern="[A-Za-z ]+"
+        title="Only letters allowed" />
+    </td>
+</tr>
+
+<tr>
+    <th>PIN</th>
+    <td>
+        <input type="text" name="pin"
+        required
+        pattern="[0-9]{6}"
+        maxlength="6"
+        title="Enter 6 digit PIN"
+        oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+    </td>
+</tr>
+
+<tr>
+    <th>PIC</th>
+    <td>
+        <input type="file" name="pic" required />
+    </td>
+</tr>
+
+<tr>
+    <th>LATITUDE</th>
+    <td>
+        <div id="gmap"></div>
+        <input type="text" name="latitude" id="lt" readonly required />
+    </td>
+</tr>
+
+<tr>
+    <th>LONGITUDE</th>
+    <td>
+        <input type="text" name="longitude" id="lg" readonly required />
+    </td>
+</tr>
+
+<tr>
+    <th>PROOF</th>
+    <td>
+        <input type="file" name="proof" required />
+    </td>
+</tr>
+
+<tr>
+    <th>PASSWORD</th>
+    <td>
+        <input type="password" name="password"
+        required
+        minlength="6"
+        title="Minimum 6 characters" />
+    </td>
+</tr>
+
+<tr>
+    <th>CONFIRM PASSWORD</th>
+    <td>
+        <input type="password" name="cpassword"
+        required
+        minlength="6"
+        oninput="this.setCustomValidity(this.value !== document.getElementsByName('password')[0].value ? 'Password mismatch' : '')" />
+    </td>
+</tr>
+
+<tr>
+    <th colspan="2" style="text-align:center;">
+        <input type="submit" value="REGISTER" />
+    </th>
+</tr>
+</table>
+
+</form>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk"></script>
+
+<script>
+var map, marker;
+
+function initialize() {
+    var latlng = new google.maps.LatLng(11.868536, 75.363197);
+    map = new google.maps.Map(document.getElementById("gmap"), {
+        zoom: 7,
+        center: latlng
+    });
+
+    marker = new google.maps.Marker({ position: latlng, map: map });
+
+    google.maps.event.addListener(map, "click", function(event) {
+        lt.value = event.latLng.lat().toFixed(5);
+        lg.value = event.latLng.lng().toFixed(5);
+        marker.setPosition(event.latLng);
+    });
+
+    navigator.geolocation.getCurrentPosition(function(pos){
+        var loc = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+        map.setCenter(loc);
+        map.setZoom(14);
+        marker.setPosition(loc);
+        lt.value = pos.coords.latitude.toFixed(5);
+        lg.value = pos.coords.longitude.toFixed(5);
+    });
+}
+</script>
+
+</body>
+</html>
