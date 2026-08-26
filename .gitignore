@@ -24,3 +24,23 @@ APP/static/faces/
 
 # Uploaded certificates / personal documents
 media/certificates/
+
+# Flutter generated files
+Frontend/.dart_tool/
+Frontend/build/
+Frontend/.idea/
+
+# Flutter generated plugin files
+Frontend/.flutter-plugins
+Frontend/.flutter-plugins-dependencies
+
+# Flutter generated plugin registration files
+Frontend/linux/flutter/generated_plugin_registrant.*
+Frontend/linux/flutter/generated_plugins.cmake
+Frontend/macos/Flutter/GeneratedPluginRegistrant.swift
+Frontend/windows/flutter/generated_plugin_registrant.*
+Frontend/windows/flutter/generated_plugins.cmake
+
+# Android Studio / IntelliJ project files
+Frontend/*.iml
+Frontend/**/*.iml
