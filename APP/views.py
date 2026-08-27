@@ -1,5 +1,6 @@
 import datetime
 import email
+import os
 import random
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -17,7 +18,6 @@ from django.shortcuts import render, redirect
 from APP.face_check import check_face
 from .models import *
 
-print(make_password("12345678"))
 # Create your views here.
 def loginn(request):
     return render(request, 'LOGIN.html')
@@ -579,8 +579,8 @@ def add_student_post(request, id):
         obj1.groups.add(Group.objects.get(name='student'))
 
         try:
-            sender_email = "[REDACTED_EMAIL]"
-            app_password = "[REDACTED]"
+            sender_email = os.getenv('EMAIL_HOST_USER')
+            app_password = os.getenv('EMAIL_HOST_PASSWORD')
 
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
@@ -804,8 +804,6 @@ def cmpny_login(request):
     usern = request.POST['username']
     userpas = request.POST['password']
     data = authenticate(request, username=usern, password=userpas)
-    print(usern)
-    print(userpas)
     print(data)
     if data is not None:
         login(request, data)
@@ -1171,7 +1169,6 @@ def forgotemail(request):
     print(data)
     if data.exists():
         otp = str(random.randint(100000, 999999))
-        print(otp)
         # *✨ Python Email Codeimport smtplib*
 
         from email.mime.text import MIMEText
@@ -1179,9 +1176,9 @@ def forgotemail(request):
 
         # ✅ Gmail credentials (use App Password, not real password)
         try:
-            sender_email = "[REDACTED_EMAIL] "
+            sender_email =  os.getenv('EMAIL_HOST_USER')
             receiver_email = email  # change to actual recipient
-            app_password = "[REDACTED]"
+            app_password = os.getenv('EMAIL_HOST_PASSWORD')
             # Setup SMTP
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
@@ -1297,7 +1294,6 @@ def forgotpass(request):
     email = request.POST['email']
     npass = request.POST['password']
     cpass = request.POST['confirmpassword']
-    print(email, npass, cpass)
     if npass == cpass:
         User.objects.filter(username=email).update(password=make_password(npass))
         return JsonResponse({'status': 'ok'})
@@ -1315,9 +1311,9 @@ def forgotpasswordbuttonclick(request):
         from email.mime.multipart import MIMEMultipart
 
         # ✅ Gmail credentials (use App Password, not real password)
-        sender_email = "[REDACTED_EMAIL]"
+        sender_email = os.getenv('EMAIL_HOST_USER')
         receiver_email = email  # change to actual recipient
-        app_password = "[REDACTED]"  # App Password from Google
+        app_password = os.getenv('EMAIL_HOST_PASSWORD')  # App Password from Google
         pwd = str(random.randint(1100,9999))  # Example password to send
         request.session['otp'] = pwd
         request.session['email'] = email
