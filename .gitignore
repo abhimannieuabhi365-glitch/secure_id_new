@@ -44,3 +44,6 @@ Frontend/windows/flutter/generated_plugins.cmake
 # Android Studio / IntelliJ project files
 Frontend/*.iml
 Frontend/**/*.iml
+
+# Local database backups
+mysql_backup/
